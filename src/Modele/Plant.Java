@@ -4,13 +4,17 @@ public class Plant {
     private int growthTime;
     private int id;
     private int growthadvance;
+    private int positionx;
+    private int positiony;
 
-    public Plant(int xp, int cost, int growthTime, int id) {
+    public Plant(int xp, int cost, int growthTime, int id, int positionx, int positiony) {
         this.xp = xp;
         this.cost = cost;
         this.growthTime = growthTime;
         this.id = id;
         this.growthadvance = 0;
+        this.positionx = positionx;
+        this.positiony = positiony;
     }
 
     public int getXp() {
@@ -31,6 +35,14 @@ public class Plant {
 
     public int getGrowthadvance() {
         return growthadvance;
+    }
+
+    public int getPositionx() {
+        return positionx;
+    }
+
+    public int getPositiony() {
+        return positiony;
     }
 
     public void grow() {
