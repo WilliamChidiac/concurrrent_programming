@@ -145,28 +145,27 @@ Controller :
 Interface du jeu :
 On utilise les API Swing et Awt plus précisément JPanel, JFrame et ActionListener pour créer la fenêtre de jeu.
 - Struture des données : constantes entières (WIDTH, HEIGHT)
-- On utilise un GridLayout et un BorderLayout pour organiser les éléments de l’interface.
-
-
-Utilisation de l’API JPanel et Ac 
-
- 
+- On utilise un GridLayout et un BorderLayout pour organiser les éléments de l’interface, un panel principal composé 
+de deux panels représentant les boutons interactif et la carte.
 
 6. Résultat : 
 
-dsds 
+Une fenêtre composé de 4 boutons à droite et d'une carte vide à gauche.
 
 7. Documentation utilisateur : 
 
-dsds 
+Nécessite un IDE pour lancer le main de la classe GameInterface. 
 
 8. Documentation développeur : 
 
-dsds 
+Les constantes pour modifier la taille de la fenêtre sont dans la classe GameInterface.
+Pour modifier/ajouter des boutons, il faut modifier le constructeur de la classe GameInterface.
+
 
 9. Conclusion et perspectives : 
 
-dsds 
+On peut éventuellement améliorer la fenêtre de jeux en ajoutant une délimitations entre les boutons et la carte et 
+ajouter des images/colorés/redimensionner les boutons.
 
  
 

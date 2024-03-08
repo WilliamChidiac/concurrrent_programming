@@ -9,20 +9,14 @@ public class GameInterface {
 
     //Constant HEIGHT that definies the height of the window, it has to be superior as the HEIGHTMAP
     static public final int HEIGHT = 1000;
-    /*
-    // Constant HEIGHTMAP that defines the height of the map
-    static public final int HEIGHTMAP = 300;
 
-    // Constant WIDTHMAP that defines the width of the map
-    static public final int WIDTHMAP = 300;
-    //Constant BUTTONSIZE that defines the size of the buttons in the game
-    static public final int BUTTONSIZE = 100;
-    */
-    public JFrame gameFrame;
+    //Attribute that contains the window
+    private JFrame gameFrame;
 
+    //Constructor that creates the window
     public GameInterface(){
         //Panel that contains the actions
-        JPanel actions = new JPanel(new GridLayout(2,2));
+        JPanel actions = new JPanel(new GridLayout(6,1));
 
         // Definitions and Add buttons to the actions
         JButton b1 = new JButton("Move");
@@ -41,7 +35,7 @@ public class GameInterface {
         //Panel that contains the map
         JPanel map = new JPanel(new GridLayout(1,1));
 
-        //Fuse the panel of the map et the panel of the actions
+        //Fuse the panel of the map and the panel of the actions in one main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
         //Put the panel of the actions on the right
         mainPanel.add((actions), BorderLayout.EAST);
@@ -59,14 +53,16 @@ public class GameInterface {
         this.gameFrame = frame;
     }
 
+
+    //Method that allows to set the visibility of the window
     public void setVisible(boolean visible){
         this.gameFrame.setVisible(visible);
     }
+
 
     //Main function that test the window
     public static void main(String[] args) {
         GameInterface gameInterface = new GameInterface();
         gameInterface.setVisible(true);
     }
-
 }
