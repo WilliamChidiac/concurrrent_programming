@@ -5,10 +5,10 @@ import java.awt.*;
 
 public class Vue {
     //Constant WIDTH that definies the weight of the window, it has to be superior as the WIDTHMAP
-    static public final int WIDTH = 1000;
+    public static final int WIDTH = 1000;
 
     //Constant HEIGHT that definies the height of the window, it has to be superior as the HEIGHTMAP
-    static public final int HEIGHT = 1000;
+    public static final int HEIGHT = 1000;
 
     //Attribute that contains the window
     private JFrame gameFrame;
