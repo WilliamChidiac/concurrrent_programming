@@ -131,14 +131,28 @@ git add cheminFichier
 git commit -m "message"
 git push origin jewin:jewin 
 
+3. Plan de développement :
+
+Apprentissage de Panel : 30 mins
+Création de la fenêtre de jeu avec JFrame : 15 mins
+Création des boutons : 15 mins
+Interaction des boutons : 15 mins
+Création de la carte : 15 mins
+Fusion des éléments : 15 mins
+Test et ajustement de la classe : 30 mins
+Écriture de la Documentation : 45 mins
 
 4. Conception générale : 
+On a choisit de suivre le modèle MVC pour la conception de notre jeu pour séparer les différentes parties du jeu et
+faciliter le développement et l'ajout de nouvelles fonctionnalités.
 
 Model : 
 
-Vue : GameInterface 
+View : Vue
 
-Controller :  
+Controller :
+
+![DC_MVC.png](DC_MVC.png)
 
 5. Conception détaillée : 
 
@@ -147,6 +161,11 @@ On utilise les API Swing et Awt plus précisément JPanel, JFrame et ActionListe
 - Struture des données : constantes entières (WIDTH, HEIGHT)
 - On utilise un GridLayout et un BorderLayout pour organiser les éléments de l’interface, un panel principal composé 
 de deux panels représentant les boutons interactif et la carte.
+
+
+![DC_Vue.png](DC_Vue.png)
+
+
 
 6. Résultat : 
 
@@ -160,7 +179,6 @@ Nécessite un IDE pour lancer le main de la classe GameInterface.
 
 Les constantes pour modifier la taille de la fenêtre sont dans la classe GameInterface.
 Pour modifier/ajouter des boutons, il faut modifier le constructeur de la classe GameInterface.
-
 
 9. Conclusion et perspectives : 
 
