@@ -3,7 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameInterface {
+public class Vue {
     //Constant WIDTH that definies the weight of the window, it has to be superior as the WIDTHMAP
     static public final int WIDTH = 1000;
 
@@ -14,19 +14,19 @@ public class GameInterface {
     private JFrame gameFrame;
 
     //Constructor that creates the window
-    public GameInterface(){
+    public Vue(){
         //Panel that contains the actions
         JPanel actions = new JPanel(new GridLayout(6,1));
 
         // Definitions and Add buttons to the actions
         JButton b1 = new JButton("Move");
         b1.addActionListener(e -> System.out.println("I move"));
-        JButton b2 = new JButton("Plant a seed");
+        JButton b2 = new JButton("Plant");
         b2.addActionListener(e -> System.out.println("I plant"));
-        JButton b3 = new JButton("Take a plant");
-        b3.addActionListener(e -> System.out.println("Je récolte"));
-        JButton b4 = new JButton("Rester sur place");
-        b4.addActionListener(e -> System.out.println("Je fais rien"));
+        JButton b3 = new JButton("Take");
+        b3.addActionListener(e -> System.out.println("I take a plant"));
+        JButton b4 = new JButton("Stay");
+        b4.addActionListener(e -> System.out.println("Do nothing"));
         actions.add(b1);
         actions.add(b2);
         actions.add(b3);
@@ -62,7 +62,7 @@ public class GameInterface {
 
     //Main function that test the window
     public static void main(String[] args) {
-        GameInterface gameInterface = new GameInterface();
+        Vue gameInterface = new Vue();
         gameInterface.setVisible(true);
     }
 }
