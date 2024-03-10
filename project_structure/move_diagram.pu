@@ -1,0 +1,88 @@
+@startuml
+package Controller {
+    class Move_unit{
+    }
+    class Select_unit {
+    }
+    class MouseAdapter{
+        +mouseClicked(e: MouseEvent): void
+    }
+
+    Select_unit --|> MouseAdapter
+    Move_unit --|> MouseAdapter
+}
+
+
+package Modele {
+    class Unite_controle{
+        - __id_counter : int
+        + __all_unit : HashMap<Integer, Unit_Controle>
+        - id : int
+        - current_location : Point
+        - is_running : boolean
+        - ready_to_move : boolean
+        + getUnite(id: int): Unite_controle
+        + get_current_location(): Point
+        + get_id(): int
+        + move_unit(point: Point): void
+    }
+
+    class Deplacement_joueur{
+        - current: Point
+        - cible : Point
+        - direction(p:int): int
+    }
+
+    class Thread {
+        +run(): void
+    }
+
+    Deplacement_joueur --|> Thread
+    Unite_controle --* Deplacement_joueur
+    
+}
+
+package View {
+    class JPanel{
+        + paintComponent(g: Graphics): void
+        + paint(g: Graphics): void
+    }
+
+    class Main_panel {
+        +set_unit_selected(unite: Unite_controle_view): void
+        +get_unit_selected(): Unite_controle_view
+        + add_uinit(unite: Unite_controle_view): void
+    }
+
+    class View.Thread {
+        +run(): void
+    }
+
+    class Refresh {}
+
+    class Unite_controle_view{
+        - unite: Unite_controle
+        - pos : Point
+        - radius : int
+        - color: Color
+        + mouseClicked(e: MouseEvent): void
+        + get_unite(): Unite_controle
+        + set_selected(selected: boolean): void
+        + get_selected(): boolean
+        + set_color(color: Color): void
+        + get_color(): Color
+    }
+
+
+    Refresh --|> View.Thread
+    Unite_controle_view --|> JPanel
+    Main_panel --|> JPanel
+    Main_panel "1"--*"1" Refresh
+    Main_panel "1"--"*" Unite_controle_view : has
+}
+
+Select_unit "1"*--"1" Unite_controle_view: has
+Main_panel "1"<--"*" Select_unit: use
+Main_panel "1"<--"1" Move_unit: use
+Unite_controle_view "1"--"1" Unite_controle : is
+@enduml
