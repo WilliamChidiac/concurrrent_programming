@@ -4,7 +4,7 @@ import Model.AllPlants;
 import Model.Plant;
 
 public class Growth extends Thread{
-    AllPlants allPlants;
+    private AllPlants allPlants;
     public Growth(AllPlants allPlants){ {
         this.allPlants = allPlants;
     }

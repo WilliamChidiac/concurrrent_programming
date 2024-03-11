@@ -3,7 +3,7 @@ package Controller;
 import View.View;
 
 public class Redessine extends Thread{
-    View a;
+    private View a;
 
     public Redessine(View a){
         this.a = a;
