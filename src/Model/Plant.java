@@ -1,3 +1,7 @@
+package Model;
+
+//This class is a model of a plant in the game
+
 public class Plant {
     private int xp;
     private int cost;
@@ -6,6 +10,9 @@ public class Plant {
     private int growthadvance;
     private int positionx;
     private int positiony;
+    private boolean isGathered;
+    private int CWIDTH = 50;
+    private int CHEIGHT = 50;
 
     public Plant(int xp, int cost, int growthTime, int id, int positionx, int positiony) {
         this.xp = xp;
@@ -45,14 +52,41 @@ public class Plant {
         return positiony;
     }
 
+    public int getCWIDTH() {
+        return CWIDTH;
+    }
+
+    public int getCHEIGHT() {
+        return CHEIGHT;
+    }
+
     public void grow() {
         if (growthadvance < growthTime) {
             growthadvance++;
         }
     }
 
-    public bool isGrown() {
+    public boolean isGrown() {
         return growthadvance == growthTime;
+    }
+
+    public boolean isGathered() {
+        return isGathered;
+    }
+
+    public int gather() {
+        this.isGathered = true;
+        return xp;
+    }
+
+    public Plant createRandomPlant() {
+        int xp = (int) (Math.random() * 100);
+        int cost = (int) (Math.random() * 100);
+        int growthTime = (int) (Math.random() * 20);
+        int id = (int) (Math.random() * 100);
+        int positionx = (int) (Math.random() * 500);
+        int positiony = (int) (Math.random() * 500);
+        return new Plant(xp, cost, growthTime, id, positionx, positiony);
     }
 
 }
