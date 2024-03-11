@@ -12,6 +12,7 @@ public class Refresh extends Thread{
     @Override
     public void run() {
         while (true) {
+            main_panel.revalidate();
             main_panel.repaint();
             try {
                 Thread.sleep(Constant_view.REFRESH_RATE);

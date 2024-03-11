@@ -1,19 +1,17 @@
 package Controller;
 
-import Model.AllPlants;
-import Model.Plant;
+
+import Modele.Plant;
 
 public class Growth extends Thread{
-    private AllPlants allPlants;
-    public Growth(AllPlants allPlants){ {
-        this.allPlants = allPlants;
-    }
+    public Growth() {
+        super();
     }
     @Override
     public void run() {
         while (true) {
-            //for each plant, if it is not fully grown, it will grow
-            for (Plant plant : allPlants.getPlants()) {
+            //for each plant, if it is not fully grown, it will grow        
+            for (Plant plant: Plant.getAllPlants()) {
                 if (plant.getGrowthadvance() < plant.getGrowthTime()) {
                     plant.grow();
                 }

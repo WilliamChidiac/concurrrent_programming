@@ -42,4 +42,7 @@ public class Main_panel extends JPanel  {
     public void add_unit(Unite_controle_view unite) {
         this.add(unite);
     }
+    public void add_plant(Plant_view plant) {
+        this.add(plant);
+    }
 }

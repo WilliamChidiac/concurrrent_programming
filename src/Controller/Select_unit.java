@@ -20,7 +20,6 @@ public class Select_unit extends MouseAdapter {
         try {
             Main_panel main_panel = (Main_panel) unite_panel.getParent();
             main_panel.set_unit_selected(unite_panel);    
-            System.out.println("Unit selected");
             e.consume();
         } catch (Exception ex) {
             System.out.println("Unite not correctly linked to main panel.\n" + ex);

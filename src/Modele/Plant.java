@@ -1,27 +1,39 @@
-package Model;
+package Modele;
+
+import java.awt.Point;
+import java.util.Collection;
+import java.util.HashMap;
 
 //This class is a model of a plant in the game
 
 public class Plant {
+    private static HashMap<Integer, Plant> plants = new HashMap<Integer, Plant>();
+    private static int id_counter = 0;
     private int xp;
     private int cost;
     private int growthTime;
     private int id;
     private int growthadvance;
-    private int positionx;
-    private int positiony;
     private boolean isGathered;
-    private int CWIDTH = 50;
-    private int CHEIGHT = 50;
+    private Point position;
 
-    public Plant(int xp, int cost, int growthTime, int id, int positionx, int positiony) {
+    public Plant(int xp, int cost, int growthTime, Point pos) {
         this.xp = xp;
         this.cost = cost;
         this.growthTime = growthTime;
-        this.id = id;
+        this.id = id_counter++;
         this.growthadvance = 0;
-        this.positionx = positionx;
-        this.positiony = positiony;
+        this.position = pos;
+        plants.put(id, this);
+    }
+    public static Plant getPlant(int id) {
+        return plants.get(id);
+    }
+    public static Plant removePlant(int id) {
+        return plants.remove(id);
+    }
+    public static Collection<Plant> getAllPlants() {
+        return plants.values();
     }
 
     public int getXp() {
@@ -44,20 +56,8 @@ public class Plant {
         return growthadvance;
     }
 
-    public int getPositionx() {
-        return positionx;
-    }
-
-    public int getPositiony() {
-        return positiony;
-    }
-
-    public int getCWIDTH() {
-        return CWIDTH;
-    }
-
-    public int getCHEIGHT() {
-        return CHEIGHT;
+    public Point getPosition() {
+        return position;
     }
 
     public void grow() {
@@ -79,14 +79,13 @@ public class Plant {
         return xp;
     }
 
-    public Plant createRandomPlant() {
+    public static Plant createRandomPlant() {
         int xp = (int) (Math.random() * 100);
         int cost = (int) (Math.random() * 100);
         int growthTime = (int) (Math.random() * 20);
-        int id = (int) (Math.random() * 100);
-        int positionx = (int) (Math.random() * 500);
-        int positiony = (int) (Math.random() * 500);
-        return new Plant(xp, cost, growthTime, id, positionx, positiony);
+        Point position = new Point((int) (Math.random() * 500),
+                                    (int) (Math.random() * 500));
+        return new Plant(xp, cost, growthTime, position);
     }
 
 }

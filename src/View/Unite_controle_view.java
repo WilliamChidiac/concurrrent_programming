@@ -18,8 +18,7 @@ public class Unite_controle_view extends JPanel{
         this.unite = new Unite_controle(p);
         this.addMouseListener(new Select_unit(this));
         this.setBounds(p.x - radius, p.y - radius, radius*2, 2*radius);
-        setOpaque(true);
-        setBackground(Color.BLACK);
+        setOpaque(false);
     }
 
     /**
