@@ -15,10 +15,11 @@ public class Vue {
 
     //Constructor that creates the window
     public Vue(){
-        //Panel that contains the actions
-        JPanel actions = new JPanel(new GridLayout(6,1));
+        //Panel that contains the buttonsPanel
+        JPanel buttonsPanel = new JPanel(new GridLayout(3,2));
+        buttonsPanel.setBackground(Color.BLUE);
 
-        // Definitions and Add buttons to the actions
+        // Definitions and Add buttons to the buttonsPanel
         JButton b1 = new JButton("Move");
         b1.addActionListener(e -> System.out.println("I move"));
         JButton b2 = new JButton("Plant");
@@ -27,20 +28,32 @@ public class Vue {
         b3.addActionListener(e -> System.out.println("I take a plant"));
         JButton b4 = new JButton("Stay");
         b4.addActionListener(e -> System.out.println("Do nothing"));
-        actions.add(b1);
-        actions.add(b2);
-        actions.add(b3);
-        actions.add(b4);
+        buttonsPanel.add(b1);
+        buttonsPanel.add(b2);
+        buttonsPanel.add(b3);
+        buttonsPanel.add(b4);
+
+        //Panel actions that contains the buttonsPanel
+        JPanel actions = new JPanel(new BorderLayout());
+        actions.setBackground(Color.darkGray);
+        actions.add(buttonsPanel, BorderLayout.CENTER);
+        JTextField top = new JTextField("\n  Actions");
+        top.setEditable(false);
+        top.setBackground(Color.LIGHT_GRAY);
+        top.setBounds(0, 0, 0, 0);
+        actions.add(top, BorderLayout.NORTH);
 
         //Panel that contains the map
-        JPanel map = new JPanel(new GridLayout(1,1));
+        JPanel map = new JPanel();
+        map.setBackground(Color.GREEN);
 
-        //Fuse the panel of the map and the panel of the actions in one main panel
+        //Fuse the panel of the map and the panel of the buttonsPanel in one main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
-        //Put the panel of the actions on the right
-        mainPanel.add((actions), BorderLayout.EAST);
+        mainPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
+        //Put the panel of the buttonsPanel on the right
+        mainPanel.add(actions, BorderLayout.EAST);
         //Put the panel of the map on the left
-        mainPanel.add((map), BorderLayout.WEST);
+        mainPanel.add(map, BorderLayout.CENTER);
 
         // Create the window, defines some parameters and add the mainPanel
         JFrame frame = new JFrame("Gardeners vs Rabbits");
