@@ -6,7 +6,7 @@ import View.Main_panel;
 import View.Unite_controle_view;
 
 public class Select_unit extends MouseAdapter {
-    Unite_controle_view unite_panel;
+    private Unite_controle_view unite_panel;
     
     public Select_unit( Unite_controle_view unite) {
         this.unite_panel = unite;

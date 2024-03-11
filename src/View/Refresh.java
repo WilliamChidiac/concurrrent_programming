@@ -1,7 +1,7 @@
 package View;
 
 public class Refresh extends Thread{
-    Main_panel main_panel;
+    private Main_panel main_panel;
     public Refresh(Main_panel main_panel) {
         this.main_panel = main_panel;
     }

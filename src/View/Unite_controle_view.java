@@ -9,13 +9,11 @@ import Modele.Unite_controle;
 import Controller.Select_unit;
 
 public class Unite_controle_view extends JPanel{
-    Point pos;
-    int radius;
-    Color color;
-    Unite_controle unite;
+    private int radius;
+    private Color color;
+    private Unite_controle unite;
     public Unite_controle_view(Point p, Color c){
         this.color = c;
-        this.pos = p;
         this.radius = Constant_view.RADIUS_UNIT;
         this.unite = new Unite_controle(p);
         this.addMouseListener(new Select_unit(this));
@@ -38,6 +36,7 @@ public class Unite_controle_view extends JPanel{
     @Override 
     public void paint(Graphics g) {
         super.paintComponent(g);
+        Point pos = this.unite.get_current_location();
         this.setLocation(pos.x - radius, pos.y - radius);
         this.revalidate();
         g.setColor(this.color);
