@@ -3,7 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class Vue {
+public class GameInterface {
     //Constant WIDTH that definies the weight of the window, it has to be superior as the WIDTHMAP
     public static final int WIDTH = 1000;
 
@@ -14,21 +14,40 @@ public class Vue {
     private JFrame gameFrame;
 
     //Constructor that creates the window
-    public Vue(){
-        //Panel that contains the buttonsPanel
-        JPanel buttonsPanel = new JPanel(new GridLayout(3,2));
-        buttonsPanel.setBackground(Color.BLUE);
+    public GameInterface(){
+        //Panel that contains the buttons without interaction
+        JPanel buttonsShop = new JPanel(new GridLayout(3,2));
+        buttonsShop.setBackground(Color.lightGray);
+        buttonsShop.setPreferredSize(new Dimension(WIDTH/4, 50));
+        buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
-        // Definitions and Add buttons to the buttonsPanel
-        JButton b1 = new JButton("Move");
-        b1.addActionListener(e -> System.out.println("I move"));
+        //Top layer for the buttonsShop
+        JPanel actionShop = new JPanel(new BorderLayout());
+        actionShop.setBackground(Color.darkGray);
+        actionShop.add(buttonsShop, BorderLayout.CENTER);
+        JTextField topShop = new JTextField(" Shop :");
+        topShop.setEditable(false);
+        topShop.setHorizontalAlignment(JTextField.CENTER);
+        topShop.setBackground(Color.LIGHT_GRAY);
+        topShop.setPreferredSize(new Dimension(WIDTH/4, HEIGHT/16));
+        actionShop.add(topShop, BorderLayout.NORTH);
+
+        //Panel that contains the buttonsPanel for the gardener
+        JPanel buttonsPanel = new JPanel(new GridLayout(10,2));
+        buttonsPanel.setBackground(Color.lightGray);
+        buttonsPanel.setPreferredSize(new Dimension(WIDTH/4, 50));
+        buttonsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+        //Definitions and Add buttons to the buttonsPanel
+        JButton b1 = new JButton("Market");
+        b1.addActionListener(e -> System.out.println("go to the market"));
         JButton b2 = new JButton("Plant");
         b2.addActionListener(e -> System.out.println("I plant"));
         JButton b3 = new JButton("Take");
         b3.addActionListener(e -> System.out.println("I take a plant"));
         JButton b4 = new JButton("Stay");
         b4.addActionListener(e -> System.out.println("Do nothing"));
-        buttonsPanel.add(b1);
+        //buttonsPanel.add(b1);
         buttonsPanel.add(b2);
         buttonsPanel.add(b3);
         buttonsPanel.add(b4);
@@ -37,10 +56,12 @@ public class Vue {
         JPanel actions = new JPanel(new BorderLayout());
         actions.setBackground(Color.darkGray);
         actions.add(buttonsPanel, BorderLayout.CENTER);
-        JTextField top = new JTextField("\n  Actions");
+        String gardenerName = "Gardener's 1";
+        JTextField top = new JTextField(gardenerName+ " actions :");
         top.setEditable(false);
+        top.setHorizontalAlignment(JTextField.CENTER);
         top.setBackground(Color.LIGHT_GRAY);
-        top.setBounds(0, 0, 0, 0);
+        top.setPreferredSize(new Dimension(WIDTH/4, HEIGHT/16));
         actions.add(top, BorderLayout.NORTH);
 
         //Panel that contains the map
@@ -75,7 +96,7 @@ public class Vue {
 
     //Main function that test the window
     public static void main(String[] args) {
-        Vue gameInterface = new Vue();
+        GameInterface gameInterface = new GameInterface();
         gameInterface.setVisible(true);
     }
 }
