@@ -39,6 +39,6 @@ public class Unite_controle_view extends JPanel{
         this.setLocation(pos.x - radius, pos.y - radius);
         this.revalidate();
         g.setColor(this.color);
-        g.fillOval(0, 0, radius*2, radius*2);
+        g.fillOval(0, 0, radius * 2, radius * 2);
     }
 }

@@ -60,7 +60,14 @@ public class Unite_controle {
         }
         Deplacement_joueur dp = new Deplacement_joueur(current_location, point);
         dp.start();
-        
+    }
+
+    /**
+     * Set the is_running of the unit
+     * @param is_running the current location of the unit
+     */
+    public void setIs_running(boolean is_running) {
+        this.is_running= is_running;
     }
 
     /**

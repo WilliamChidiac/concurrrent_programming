@@ -2,6 +2,8 @@ package Controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import View.GameInterface;
 import View.Main_panel;
 import View.Unite_controle_view;
 
