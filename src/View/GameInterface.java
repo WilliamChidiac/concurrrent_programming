@@ -30,25 +30,6 @@ public class GameInterface {
 
     //Constructor that creates the window
     public GameInterface(){
-        //Panel that contains the buttons without interaction
-        JPanel buttonsShop = new JPanel(new GridLayout(3,2));
-        buttonsShop.setBackground(Color.lightGray);
-        buttonsShop.setPreferredSize(new Dimension(WIDTH/4, 50));
-        buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-        //Top layer for the buttonsShop
-        JPanel actionShop = new JPanel(new BorderLayout());
-        actionShop.setBackground(Color.darkGray);
-        actionShop.add(buttonsShop, BorderLayout.CENTER);
-        JTextField topShop = new JTextField(" Shop :");
-        topShop.setEditable(false);
-        topShop.setHorizontalAlignment(JTextField.CENTER);
-        topShop.setBackground(Color.LIGHT_GRAY);
-        topShop.setPreferredSize(new Dimension(WIDTH/4, HEIGHT/16));
-        actionShop.add(topShop, BorderLayout.NORTH);
-        this.shopPanel = actionShop;
-
-
         //Panel that contains the map
         Main_panel map = new Main_panel(this);
         map.setBackground(Color.GREEN);
@@ -65,6 +46,7 @@ public class GameInterface {
         (new Growth()).start();
         Refresh refresh = new Refresh(map);
         refresh.start();
+
 
         //Panel that contains the buttonsPanel for the gardener
         JPanel buttonsPanel = new JPanel(new GridLayout(10,2));
@@ -88,18 +70,23 @@ public class GameInterface {
         buttonsPanel.add(b3);
         buttonsPanel.add(b4);
 
+
+
         //Panel actions that contains the buttonsPanel
         JPanel actions = new JPanel(new BorderLayout());
         actions.setBackground(Color.darkGray);
         actions.add(buttonsPanel, BorderLayout.CENTER);
+
         String gardenerName = "Gardener's";
         JTextField top = new JTextField(gardenerName+ " actions :");
         top.setEditable(false);
         top.setHorizontalAlignment(JTextField.CENTER);
         top.setBackground(Color.LIGHT_GRAY);
         top.setPreferredSize(new Dimension(WIDTH/4, HEIGHT/16));
+
         actions.add(top, BorderLayout.NORTH);
         this.gardenerPanel = actions;
+        //this.gardenerPanel = new Gardener_menu(map);
 
         //Fuse the panel of the map and the panel of the buttonsPanel in one main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
