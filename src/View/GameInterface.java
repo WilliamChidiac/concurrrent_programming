@@ -1,9 +1,19 @@
 package View;
 
-import Controller.Growth;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import Controller.Growth;
+import Modele.Score_and_prices;
 
 public class GameInterface {
     //Constant WIDTH that definies the weight of the window, it has to be superior as the WIDTHMAP
@@ -18,26 +28,33 @@ public class GameInterface {
     //Attribute that contains the panel of the window
     private JPanel mainPanel;
 
+    //Attribute that contains the panel of the info
+    private JPanel infoPanel;
+    
+
     //Attribute that contains the panel of the gardener
     private JPanel gardenerPanel;
-
     //Attribute that contains the panel of the shop
     private JPanel shopPanel;
-
+    
     //Attribute that contains the panel of the rabbit
     private JPanel rabbitPanel;
 
+    private JTextField score = new JTextField("Score : 0");
 
     //Constructor that creates the window
-    public GameInterface(){
+    public GameInterface(Score_and_prices sp){
         //Panel that contains the map
         Main_panel map = new Main_panel(this);
         map.setBackground(Color.GREEN);
+
+        sp.setGameInterface(this);
+
         
         Unite_controle_view u1 = new Unite_controle_view(new Point(50, 50), Color.RED);
         Unite_controle_view u2 = new Unite_controle_view(new Point(200, 200), Color.BLUE);
-        Plant_view pv1 = new Plant_view(2, 3, 4, new Point(100, 100));
-        Plant_view pv2 = new Plant_view(2, 3, 4, new Point(100, 200));
+        Plant_view pv1 = new Plant_view(2, 3, 4, new Point(100, 100), sp);
+        Plant_view pv2 = new Plant_view(2, 3, 4, new Point(100, 200), sp);
         map.add_unit(u2);
         map.add_unit(u1);
         map.add_plant(pv1);
@@ -60,7 +77,7 @@ public class GameInterface {
         JButton b2 = new JButton("Plant");
         b2.addActionListener(e -> map.add(new Plant_view(2, 3, 4,
                 new Point((int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getX(),
-                        (int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getY()) )));
+                        (int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getY()), sp )));
         JButton b3 = new JButton("Take");
         b3.addActionListener(e -> System.out.println("I take a plant"));
         JButton b4 = new JButton("Stay");
@@ -69,8 +86,6 @@ public class GameInterface {
         buttonsPanel.add(b2);
         buttonsPanel.add(b3);
         buttonsPanel.add(b4);
-
-
 
         //Panel actions that contains the buttonsPanel
         JPanel actions = new JPanel(new BorderLayout());
@@ -97,6 +112,13 @@ public class GameInterface {
         mainPanel.add(map, BorderLayout.CENTER);
         this.mainPanel = mainPanel;
 
+        JPanel info = new JPanel(new BorderLayout());
+        this.infoPanel = info;
+        mainPanel.add(infoPanel, BorderLayout.EAST);
+        score.setEditable(false);
+        infoPanel.add(score, BorderLayout.NORTH);
+
+
         // Create the window, defines some parameters and add the mainPanel
         JFrame frame = new JFrame("Gardeners vs Rabbits");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +130,10 @@ public class GameInterface {
         this.gameFrame = frame;
 
     }
-
+    
+    public void updateScore(int score) {
+        this.score.setText("Score : " + score);
+    }
 
     //Method that allows to set the visibility of the window
     public void setVisible(boolean visible){
@@ -118,21 +143,22 @@ public class GameInterface {
 
     //Method that allows to add a panel to the gameFrame at the right of the window
     public void addGardenerPanel(){
-        this.mainPanel.add(this.gardenerPanel, BorderLayout.EAST);
+        this.infoPanel.add(this.gardenerPanel, BorderLayout.EAST);
         this.gameFrame.repaint();
     }
 
 
     //Method that remove the current buttons panel of the mainPanel
     public void removeGardenerPanel(){
-        this.mainPanel.remove(this.gardenerPanel);
+        this.infoPanel.remove(this.gardenerPanel);
         this.gameFrame.repaint();
     }
 
 
     //Main function that test the window
     public static void main(String[] args) {
-        GameInterface gameInterface = new GameInterface();
+        Score_and_prices sp = new Score_and_prices();
+        GameInterface gameInterface = new GameInterface(sp);
         gameInterface.setVisible(true);
     }
 }

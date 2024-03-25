@@ -1,7 +1,16 @@
 package View;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Point;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import Modele.Score_and_prices;
 
 public class Gardener_menu extends TopLayer {
 
@@ -13,7 +22,7 @@ public class Gardener_menu extends TopLayer {
      * @param main the map of the game
      * @return a gardener's menu
      */
-    public Gardener_menu(Main_panel main){
+    public Gardener_menu(Main_panel main, Score_and_prices sp){
         super("Gardener's actions :");
         this.map = main;
         //Panel that contains the buttonsPanel for the gardener
@@ -28,7 +37,7 @@ public class Gardener_menu extends TopLayer {
         JButton b2 = new JButton("Plant");
         b2.addActionListener(e -> map.add(new Plant_view(2, 3, 4,
                 new Point((int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getX(),
-                        (int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getY()) )));
+                        (int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getY()), sp )));
         JButton b3 = new JButton("Take");
         b3.addActionListener(e -> System.out.println("I take a plant"));
         JButton b4 = new JButton("Stay");
@@ -47,7 +56,8 @@ public class Gardener_menu extends TopLayer {
     public static void main(String[] args) {
         //Test the Gardener_menu class
         JFrame frame = new JFrame();
-        frame.add(new Gardener_menu(null));
+        Score_and_prices sp = new Score_and_prices();
+        frame.add(new Gardener_menu(null, sp));
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);

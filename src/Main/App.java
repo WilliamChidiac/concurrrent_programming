@@ -1,11 +1,13 @@
 package Main;
 
-import View.*;
+import Modele.Score_and_prices;
+import View.GameInterface;
 
 public class App {
     public static void main(String[] args) {
         //Creation of the window
-        GameInterface gameInterface = new GameInterface();
+        Score_and_prices sp = new Score_and_prices();
+        GameInterface gameInterface = new GameInterface(sp);
         gameInterface.setVisible(true);
     }
 }

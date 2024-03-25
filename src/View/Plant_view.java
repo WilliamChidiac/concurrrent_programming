@@ -6,16 +6,17 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
-import Modele.Plant;
 import Controller.PlantClick;
+import Modele.Plant;
+import Modele.Score_and_prices;
 
 public class Plant_view extends JPanel{
     private int plant_id;
-    public Plant_view(int xp, int cost, int growthTime, Point pos) {
+    public Plant_view(int xp, int cost, int growthTime, Point pos, Score_and_prices sp) {
         super();
         Plant p = new Plant(xp, cost, growthTime, pos);
         this.plant_id = p.getId();
-        this.addMouseListener(new PlantClick(this));
+        this.addMouseListener(new PlantClick(this, sp));
         this.setBounds(pos.x, pos.y, Constant_view.PLANT_BW, (Constant_view.PLANT_BH+Constant_view.PLANT_GAP+Constant_view.PLANT_RADIUS*2));
         //this.setOpaque(false);
         this.setBackground(Color.YELLOW);
