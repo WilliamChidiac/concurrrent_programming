@@ -16,7 +16,7 @@ public class Shop_menu extends JFrame{
         //Panel that contains the buttons without interaction
         JPanel buttonsShop = new JPanel(new GridLayout(3,2));
         buttonsShop.setBackground(Color.lightGray);
-        buttonsShop.setPreferredSize(new Dimension(GameInterface.WIDTH/4, 50));
+        buttonsShop.setPreferredSize(new Dimension(Constant_view.WIDTH_WINDOW/4, 50));
         buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         buttonsShop.add(new JButton("Buy"));
         buttonsShop.add(new JButton("Sell"));

@@ -9,6 +9,7 @@ import Modele.Plant;
 import Modele.Score_and_prices;
 import View.Main_panel;
 import View.Plant_view;
+import View.Unite_controle_view;
 
 public class PlantClick extends MouseAdapter {
     private Plant_view plant_view;
@@ -35,6 +36,6 @@ public class PlantClick extends MouseAdapter {
 
     //Method which return true if plant_view parent attribute unit_selected is not null
     public Boolean isCollectable(){
-        return ((Main_panel) plant_view.getParent()).get_unit_selected() != null;
+        return Unite_controle_view.get_selected_unit() != null;
     }
 }

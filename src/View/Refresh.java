@@ -1,9 +1,9 @@
 package View;
 
 public class Refresh extends Thread{
-    private Main_panel main_panel;
-    public Refresh(Main_panel main_panel) {
-        this.main_panel = main_panel;
+    private GameInterface window;
+    public Refresh(GameInterface window) {
+        this.window = window;
     }
 
     /**
@@ -12,8 +12,8 @@ public class Refresh extends Thread{
     @Override
     public void run() {
         while (true) {
-            main_panel.revalidate();
-            main_panel.repaint();
+            window.revalidate();
+            window.repaint();
             try {
                 Thread.sleep(Constant_view.REFRESH_RATE);
             } catch (InterruptedException e) {

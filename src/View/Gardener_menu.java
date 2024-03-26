@@ -35,9 +35,13 @@ public class Gardener_menu extends TopLayer {
         JButton b1 = new JButton("Market");
         b1.addActionListener(e -> System.out.println("go to the market"));
         JButton b2 = new JButton("Plant");
-        b2.addActionListener(e -> map.add(new Plant_view(2, 3, 4,
-                new Point((int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getX(),
-                        (int) ((Unite_controle_view) map.get_unit_selected()).get_unite().get_current_location().getY()), sp )));
+        b2.addActionListener(e ->
+        {
+            Point coordinate = Unite_controle_view.get_selected_unit().get_unite().get_current_location();
+            map.add(new Plant_view(2, 3, 4,
+            coordinate, sp ));
+        }
+        );
         JButton b3 = new JButton("Take");
         b3.addActionListener(e -> System.out.println("I take a plant"));
         JButton b4 = new JButton("Stay");

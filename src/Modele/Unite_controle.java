@@ -6,7 +6,7 @@ import java.lang.Math;
 
 public class Unite_controle {
     private static int id_counter = 0;
-    public static HashMap<Integer, Unite_controle> all_unit = new HashMap<Integer, Unite_controle>(); // Fix syntax error by adding variable type and name
+    public static HashMap<Integer, Unite_controle> all_unit = new HashMap<Integer, Unite_controle>();
     private int id;
     private Point current_location;
     private boolean is_running = false;

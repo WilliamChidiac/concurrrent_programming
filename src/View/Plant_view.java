@@ -18,8 +18,8 @@ public class Plant_view extends JPanel{
         this.plant_id = p.getId();
         this.addMouseListener(new PlantClick(this, sp));
         this.setBounds(pos.x, pos.y, Constant_view.PLANT_BW, (Constant_view.PLANT_BH+Constant_view.PLANT_GAP+Constant_view.PLANT_RADIUS*2));
-        //this.setOpaque(false);
-        this.setBackground(Color.YELLOW);
+        this.setOpaque(false);
+        
     }
 
     public Plant getPlant() {
@@ -43,20 +43,17 @@ public class Plant_view extends JPanel{
         int barHeight = Constant_view.PLANT_BH; // Height of the progression bar
         
         
-        g.setColor(Color.GRAY); // Set the color of the background to gray
-        g.fillRect(0, 0, maxBarWidth, barHeight); // Draw the background of the progression bar
-        
         // Draw the progress in the progression bar
         double growthRatio = (double) plant.getGrowthadvance() / plant.getGrowthTime(); // Ratio of current growth to maximum growth
         int progressWidth = (int) (maxBarWidth * growthRatio); // Width of the progress
         
-        if (plant.getGrowthadvance() == plant.getGrowthTime()) {
-            g.setColor(Color.RED); // Set the color of the progress to red if the growth is full
-        } else {
-            g.setColor(Color.GREEN); // Set the color of the progress to green if the growth is not full
+        if (plant.getGrowthadvance() != plant.getGrowthTime()) {
+            g.setColor(Color.GRAY); // Set the color of the background to gray
+            g.fillRect(0, 0, maxBarWidth, barHeight); // Draw the background of the progression bar
+            g.setColor(Color.RED); // Set the color of the progress to red if the growth is not full
+            g.fillRect(0,0, progressWidth, barHeight); // Draw the progress in the progression bar
         }
         
-        g.fillRect(0,0, progressWidth, barHeight); // Draw the progress in the progression bar
         g.dispose();
     }
 }
