@@ -1,8 +1,6 @@
 package View;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Point;
+import java.awt.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -21,12 +19,16 @@ public class Gardener_menu extends JPanel {
      * @param main the map of the game
      */
     public Gardener_menu(Main_panel main, Score_and_prices sp){
-        super(new GridLayout(2,1));
+        //Initialization of the gardener's menu
+        super(new BorderLayout());
         this.map = main;
-        //Panel that contains the buttonsPanel for the gardener
         this.setBackground(Color.lightGray);
-        //buttonsPanel.setPreferredSize(new Dimension(WIDTH/4, HEIGHT/16));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+
+        //Panel that contains the buttonsPanel for the gardener
+        JPanel buttonsPanel = new JPanel(new GridLayout(2,1));
+        buttonsPanel.setBackground(Color.lightGray);
 
         //Definitions and Add buttons to the buttonsPanel
         JButton b1 = new JButton("Plant");
@@ -39,8 +41,11 @@ public class Gardener_menu extends JPanel {
         );
         JButton b2 = new JButton("Stay");
         b2.addActionListener(e -> map.stay());
-        this.add(b1);
-        this.add(b2);
+        buttonsPanel.add(b1);
+        buttonsPanel.add(b2);
+
+        //Add the buttonsPanel to the gardener's menu
+        this.add(buttonsPanel, BorderLayout.NORTH);
     }
 
     /**
