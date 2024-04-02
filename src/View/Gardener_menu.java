@@ -34,9 +34,7 @@ public class Gardener_menu extends JPanel {
         JButton b1 = new JButton("Plant");
         b1.addActionListener(e ->
         {
-            Point coordinate = Unite_controle_view.get_selected_unit().get_unite().get_current_location();
-            map.add(new Plant_view(2, 3, 4,
-            coordinate, sp ));
+            Shop shop = new Shop(map, sp);
         }
         );
         JButton b2 = new JButton("Stay");
