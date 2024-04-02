@@ -43,7 +43,7 @@ public class Main_panel extends JPanel  {
      */
     public void stay(){
         GameInterface gameInterface = get_game_interface();
-        gameInterface.removeGardenerPanel();
+        gameInterface.setToStandardMenu();
         Unite_controle_view.stop_movement();
     }
 }

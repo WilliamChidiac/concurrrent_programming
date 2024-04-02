@@ -22,7 +22,7 @@ public class Select_unit extends MouseAdapter {
         try {
             GameInterface gameInterface = ((Main_panel) unite_panel.getParent()).get_game_interface();
             Unite_controle_view.set_selected_unit(unite_panel);  
-            gameInterface.addGardenerPanel();  
+            gameInterface.addGardenerMenu();
             e.consume();
         } catch (Exception ex) {
             System.out.println("Unite not correctly linked to main panel.\n" + ex);

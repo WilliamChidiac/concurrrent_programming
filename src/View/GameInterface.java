@@ -1,40 +1,27 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Point;
+import java.awt.*;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Controller.Growth;
 import Modele.Score_and_prices;
+import Modele.Plant;
 
 public class GameInterface extends JFrame{
-    //Constant WIDTH that definies the weight of the window, it has to be superior as the WIDTHMAP
-    private final int WIDTH = Constant_view.WIDTH_WINDOW;
-
-    //Constant HEIGHT that definies the height of the window, it has to be superior as the HEIGHTMAP
-    private final int HEIGHT = Constant_view.HEIGHT_WINDOW;
-
-    //Attribute that contains the panel of the info
-    private JPanel infoPanel;
-    
+    //Attribute that contains the principal panel of the game
+    private JPanel windowPanel;
 
     //Attribute that contains the panel of the gardener
-    private JPanel gardenerPanel;
-    //Attribute that contains the panel of the shop
-    private JPanel shopPanel;
-    
+    private Gardener_menu gardenerPanel;
+
+    //Attribute that contains the panel of the plant
+    private Plant_menu plantPanel;
+
     //Attribute that contains the panel of the rabbit
     private JPanel rabbitPanel;
-
-    private JTextField score = new JTextField("Score : 0");
 
     //Constructor that creates the window
     public GameInterface(String game_title, Score_and_prices sp){
@@ -44,7 +31,6 @@ public class GameInterface extends JFrame{
         map.setBackground(Color.GREEN);
 
         sp.setGameInterface(this);
-
         
         Unite_controle_view u1 = new Unite_controle_view(new Point(50, 50), Color.RED);
         Unite_controle_view u2 = new Unite_controle_view(new Point(200, 200), Color.BLUE);
@@ -57,81 +43,67 @@ public class GameInterface extends JFrame{
 
         (new Growth()).start();
 
-
         //Panel that contains the buttonsPanel for the gardener
-        JPanel buttonsPanel = new JPanel(new GridLayout(10,2));
-        buttonsPanel.setBackground(Color.lightGray);
-        buttonsPanel.setPreferredSize(new Dimension(WIDTH/4, 50));
-        buttonsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
-        //Definitions and Add buttons to the buttonsPanel
-        JButton b1 = new JButton("Market");
-        b1.addActionListener(e -> System.out.println("go to the market"));
-        JButton b2 = new JButton("Plant");
-        b2.addActionListener(e -> map.add(new Plant_view(2, 3, 4, (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone(), sp )));
-        JButton b3 = new JButton("Take");
-        b3.addActionListener(e -> System.out.println("I take a plant"));
-        JButton b4 = new JButton("Stay");
-        b4.addActionListener(e -> map.stay());
-        //buttonsPanel.add(b1);
-        buttonsPanel.add(b2);
-        buttonsPanel.add(b3);
-        buttonsPanel.add(b4);
-
-        //Panel actions that contains the buttonsPanel
-        JPanel actions = new JPanel(new BorderLayout());
-        actions.setBackground(Color.darkGray);
-        actions.add(buttonsPanel, BorderLayout.CENTER);
-
-        String gardenerName = "Gardener's";
-        JTextField top = new JTextField(gardenerName+ " actions :");
-        top.setEditable(false);
-        top.setHorizontalAlignment(JTextField.CENTER);
-        top.setBackground(Color.LIGHT_GRAY);
-        top.setPreferredSize(new Dimension(WIDTH/4, HEIGHT/16));
-
-        actions.add(top, BorderLayout.NORTH);
-        this.gardenerPanel = actions;
-        //this.gardenerPanel = new Gardener_menu(map);
+        this.gardenerPanel = new Gardener_menu(map, sp);
 
         //Fuse the panel of the map and the panel of the buttonsPanel in one main panel
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
-        //Put the panel of the buttonsPanel on the right
-        //mainPanel.add(this.gardenerPanel, BorderLayout.EAST);
-        //Put the panel of the map on the left
-        mainPanel.add(map, BorderLayout.CENTER);
-
-        JPanel info = new JPanel(new BorderLayout());
-        this.infoPanel = info;
-        mainPanel.add(infoPanel, BorderLayout.EAST);
-        score.setEditable(false);
-        infoPanel.add(score, BorderLayout.NORTH);
-
+        this.windowPanel = new JPanel(new BorderLayout());
+        windowPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
+        //Add the map panel to the mainPanel
+        windowPanel.add(map, BorderLayout.CENTER);
+        //Add the menu panel to the mainPanel
+        windowPanel.add(new TopLayer("Menu"), BorderLayout.EAST);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.add(mainPanel);
+        this.add(this.windowPanel);
         this.pack();
-        //Defines the size of the window
-        this.setSize(WIDTH, HEIGHT);
-
     }
-    
+
+    //Method that allows to update the score in the top layer
     public void updateScore(int score) {
-        this.score.setText("Score : " + score);
+        //Get the top layer
+        TopLayer top = (TopLayer) this.windowPanel.getComponent(1);
+        //Update the text of the first JTextField with the new score
+        top.updateScore(score);
     }
 
 
-    //Method that allows to add a panel to the gameFrame at the right of the window
-    public void addGardenerPanel(){
-        this.infoPanel.add(this.gardenerPanel, BorderLayout.EAST);
-        this.repaint();
+    //Method that allows to remove the last panel added and add the gardenerMenu to the topLayer
+    public void addGardenerMenu(){
+        //Remove the last panel added to the topLayer
+        this.removeLastPanel();
+        //Add the gardenerMenu to the topLayer
+        ((TopLayer) this.windowPanel.getComponent(1)).add(this.gardenerPanel, BorderLayout.CENTER);
+        //Set the title of the topLayer to Gardener
+        ((TopLayer) this.windowPanel.getComponent(1)).setTitle("Gardener");
+        this.revalidate();
     }
 
+    //Method that allows to remove the last panel added and add the plantMenu to the topLayer
+    public void addPlantMenu(Plant p){
+        //Remove the last panel added to the topLayer
+        this.removeLastPanel();
+        this.plantPanel = new Plant_menu(p);
+        //Add the plantMenu to the topLayer
+        ((TopLayer) this.windowPanel.getComponent(1)).add(this.plantPanel, BorderLayout.CENTER);
+        this.revalidate();
+    }
 
-    //Method that remove the current buttons panel of the mainPanel
-    public void removeGardenerPanel(){
-        this.infoPanel.remove(this.gardenerPanel);
-        this.repaint();
+    //Method that remove the last panel added to the topLayer if there is one
+    public void removeLastPanel(){
+        //Get the top layer
+        TopLayer top = (TopLayer) this.windowPanel.getComponent(1);
+
+        //Check if there is a panel to remove from the top layer and remove it
+        if(top.getComponentCount() > 1) {
+            top.remove(1);
+            this.revalidate();
+        }
+    }
+
+    //Method that remove the last panel and set the top layer second JTextField to the title Menu
+    public void setToStandardMenu(){
+        this.removeLastPanel();
+        ((TopLayer) this.windowPanel.getComponent(1)).setTitle("Menu");
     }
 }

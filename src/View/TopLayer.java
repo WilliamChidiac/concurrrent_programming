@@ -37,6 +37,11 @@ public class TopLayer extends JPanel{
         ((JTextField) this.textPanel.getComponent(1)).setText(str);
     }
 
+    //Method setScore that changes the text of the first JTextField with the new score
+    public void updateScore(int score){
+        ((JTextField) this.textPanel.getComponent(0)).setText("Score : " + score);
+    }
+
     /**
      * Main method to test the TopLayer class
      */
