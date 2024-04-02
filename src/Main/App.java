@@ -16,7 +16,7 @@ public class App {
     public static void main(String[] args) {
         //Creation of the window
         Score_and_prices sp = new Score_and_prices();
-        GameInterface gameInterface = new GameInterface("Garderners vs Rabbits",sp);
+        GameInterface gameInterface = new GameInterface("Gardeners vs Rabbits",sp);
 
         // Create a KeyStroke for the escape key
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
