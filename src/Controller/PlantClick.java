@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import Modele.Plant;
 import Modele.Score_and_prices;
+import View.GameInterface;
 import View.Main_panel;
 import View.Plant_view;
 import View.Unite_controle_view;
@@ -31,6 +32,12 @@ public class PlantClick extends MouseAdapter {
             parent.revalidate();
             parent.repaint();
             Plant.removePlant(plant.getId());
+        }else{
+            //Get the game interface from the parent of the plant_view
+            GameInterface game_interface = ((Main_panel) this.plant_view.getParent()).get_game_interface();
+
+            //Add the plant menu to the top layer
+            game_interface.addPlantMenu(plant);
         }
     }
 

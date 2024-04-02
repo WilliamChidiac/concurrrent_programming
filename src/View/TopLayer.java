@@ -6,17 +6,23 @@ public class TopLayer extends JPanel{
 
     //Attribute that contains the JPanel with a gridLayout with the textual informations
     private JPanel textPanel;
+
     /**
      * Constructor that creates the top layer with the title
      * @param str the title of the top layer
      */
     public TopLayer(String str){
+        //Create the top layer
         super(new BorderLayout());
         this.setBackground(Color.darkGray);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.setPreferredSize(new Dimension(Constant_view.WIDTH_WINDOW/4, Constant_view.HEIGHT_WINDOW));
 
+        //Create the textpanel with the textual informations
         this.textPanel = new JPanel(new GridLayout(2,1));
+        this.textPanel.setBackground(Color.darkGray);
+
+        //Create the two JTextField with the score and the title
         JTextField score = new JTextField("Score : 0");
         score.setEditable(false);
         score.setHorizontalAlignment(JTextField.CENTER);
@@ -27,8 +33,10 @@ public class TopLayer extends JPanel{
         top.setEditable(false);
         top.setHorizontalAlignment(JTextField.CENTER);
         top.setBackground(Color.LIGHT_GRAY);
+        //Add the two JTextField to the textpanel
         this.textPanel.add(top);
 
+        //Add the textpanel to the top layer
         this.add(this.textPanel, BorderLayout.NORTH);
     }
 
