@@ -72,28 +72,29 @@ public class GameInterface extends JFrame{
         //Remove the last panel added to the topLayer
         this.removeLastPanel();
 
+        //Get the TopLayer of the windowPanel
+        TopLayer top = (TopLayer) this.windowPanel.getComponent(1);
+
         //Add the gardenerMenu to the topLayer
-        ((TopLayer) this.windowPanel.getComponent(1)).add(this.gardenerPanel, BorderLayout.CENTER);
+        top.add(this.gardenerPanel, BorderLayout.CENTER);
 
         //Set the title of the topLayer to Gardener
-        ((TopLayer) this.windowPanel.getComponent(1)).setTitle("Gardener's "
-                + Unite_controle_view.get_selected_unit().get_unite().get_id()
-                +" actions :");
+        top.setTitle("Gardener's " + Unite_controle_view.get_selected_unit().get_unite().get_id() +" actions :");
     }
 
     //Method that allows to remove the last panel added and add the plantMenu to the topLayer
     public void addPlantMenu(Plant p){
         //Remove the last panel added to the topLayer
         this.removeLastPanel();
+        //Get the top layer and initialize the plant menu
+        TopLayer top = (TopLayer) this.windowPanel.getComponent(1);
         this.plantPanel = new Plant_menu(p);
 
         //Add the plantMenu to the topLayer
-        ((TopLayer) this.windowPanel.getComponent(1)).add(this.plantPanel, BorderLayout.CENTER);
+        top.add(this.plantPanel, BorderLayout.CENTER);
 
         //Set the title of the topLayer to Plant
-        ((TopLayer) this.windowPanel.getComponent(1)).setTitle("Plant's "
-                + p.getId()
-                +" informations :");
+        top.setTitle("Plant's " + p.getId() +" informations :");
     }
 
     //Method that remove the last panel added to the topLayer if there is one
