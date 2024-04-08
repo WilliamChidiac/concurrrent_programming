@@ -30,7 +30,7 @@ public class Shop extends JFrame{
         //Add buttons to the panel for each plant
         JButton plant1 = new JButton("Plant 1");
         plant1.addActionListener(e -> {
-            this.addPlant(map, sp, 2, 3, 4);
+            this.addPlant(this.map, this.sp, 2, 3, 4);
         });
         buttonsShop.add(plant1);
         buttonsShop.add(new JButton("Plant 2"));
@@ -51,7 +51,7 @@ public class Shop extends JFrame{
 
     //Method that add a plant to the argument map
     public void addPlant(Main_panel map, Score_and_prices sp, int xp, int cost, int growth_time){
-        Point coordinate = Unite_controle_view.get_selected_unit().get_unite().get_current_location();
+        Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
         Plant_view pv = new Plant_view(xp, cost, growth_time, coordinate, sp);
         map.add_plant(pv);
     }

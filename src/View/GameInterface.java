@@ -2,9 +2,7 @@ package View;
 
 import java.awt.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import Controller.Growth;
 import Modele.Score_and_prices;
