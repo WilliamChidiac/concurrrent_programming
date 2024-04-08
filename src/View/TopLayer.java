@@ -1,5 +1,7 @@
 package View;
 
+import Modele.Score_and_prices;
+
 import javax.swing.*;
 import java.awt.*;
 public class TopLayer extends JPanel{
@@ -23,7 +25,7 @@ public class TopLayer extends JPanel{
         this.textPanel.setBackground(Color.darkGray);
 
         //Create the two JTextField with the score and the title
-        JTextField score = new JTextField("Score : 0");
+        JTextField score = new JTextField("Score : 0/" + Score_and_prices.SCORE_OBJECTIVE);
         score.setEditable(false);
         score.setHorizontalAlignment(JTextField.CENTER);
         score.setBackground(Color.LIGHT_GRAY);
@@ -47,7 +49,7 @@ public class TopLayer extends JPanel{
 
     //Method setScore that changes the text of the first JTextField with the new score
     public void updateScore(int score){
-        ((JTextField) this.textPanel.getComponent(0)).setText("Score : " + score);
+        ((JTextField) this.textPanel.getComponent(0)).setText("Score : " + score+ "/" + Score_and_prices.SCORE_OBJECTIVE);
     }
 
     /**

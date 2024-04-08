@@ -6,6 +6,9 @@ public class Score_and_prices {
     private GameInterface gameInterface;
     public int score;
 
+    //Constant representing the score objective to win the game
+    public static final int SCORE_OBJECTIVE = 100;
+
     public Score_and_prices(GameInterface gm) {
         this.score = 0;
         this.gameInterface = gm;
@@ -27,5 +30,11 @@ public class Score_and_prices {
     public void addScore(int score) {
         this.score += score;
         gameInterface.updateScore(this.score);
+
+        //If the score is greater than the score objective, the player wins
+        if(this.score >= SCORE_OBJECTIVE){
+            //Call the win method of the game interface
+            gameInterface.win();
+        }
     }
 }

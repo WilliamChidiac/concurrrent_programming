@@ -33,7 +33,13 @@ public class Shop extends JFrame{
             this.addPlant(this.map, this.sp, 2, 3, 4);
         });
         buttonsShop.add(plant1);
-        buttonsShop.add(new JButton("Plant 2"));
+
+        JButton plant2 = new JButton("Plant 2");
+        plant2.addActionListener(e->{
+            this.addPlant(this.map, this.sp, 200, 3, 0);
+        });
+        buttonsShop.add(plant2);
+
         buttonsShop.add(new JButton("Plant 3"));
 
         this.add(buttonsShop);

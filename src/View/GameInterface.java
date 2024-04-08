@@ -113,4 +113,17 @@ public class GameInterface extends JFrame{
         this.removeLastPanel();
         ((TopLayer) this.windowPanel.getComponent(1)).setTitle("Menu");
     }
+
+    //Method that allows to display the win window
+    public void win(){
+        //Shut the game window
+        this.dispose();
+
+        //Create the win window
+        JFrame win = new JFrame("You win !");
+        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        win.add(new JLabel("You win !"));
+        win.pack();
+        win.setVisible(true);
+    }
 }
