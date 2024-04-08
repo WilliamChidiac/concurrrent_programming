@@ -25,7 +25,6 @@ public class Gardener_menu extends JPanel {
         this.setBackground(Color.lightGray);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
-
         //Panel that contains the buttonsPanel for the gardener
         JPanel buttonsPanel = new JPanel(new GridLayout(2,1));
         buttonsPanel.setBackground(Color.lightGray);

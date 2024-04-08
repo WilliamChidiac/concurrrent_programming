@@ -27,7 +27,7 @@ public class Shop extends JFrame{
         buttonsShop.setBackground(Color.lightGray);
         buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
-        //Add buttons to the panel for each plant
+        //Add buttons to the panel for the shop, each buttons plant a plant when clicked
         JButton plant1 = new JButton("Plant 1");
         plant1.addActionListener(e -> {
             this.addPlant(this.map, this.sp, 2, 3, 4);
@@ -49,7 +49,12 @@ public class Shop extends JFrame{
         this(null, null);
     }
 
-    //Method that add a plant to the argument map
+    /**
+     * Method that adds a plant to the map
+     * @param map the map of the game, sp the score and prices of the game,
+     *            xp the experience of the plant, cost the cost of the plant,
+     *            growth_time the time of growth of the plant
+     */
     public void addPlant(Main_panel map, Score_and_prices sp, int xp, int cost, int growth_time){
         Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
         Plant_view pv = new Plant_view(xp, cost, growth_time, coordinate, sp);

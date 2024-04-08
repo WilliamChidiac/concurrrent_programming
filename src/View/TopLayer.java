@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 public class TopLayer extends JPanel{
 
-    //Attribute that contains the JPanel with a gridLayout with the textual informations
+    //Attribute that contains the JPanel with a gridLayout with the textual characteristics
     private JPanel textPanel;
 
     /**
@@ -18,7 +18,7 @@ public class TopLayer extends JPanel{
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         this.setPreferredSize(new Dimension(Constant_view.WIDTH_WINDOW/4, Constant_view.HEIGHT_WINDOW));
 
-        //Create the textpanel with the textual informations
+        //Create the textpanel with the textual characteristics
         this.textPanel = new JPanel(new GridLayout(2,1));
         this.textPanel.setBackground(Color.darkGray);
 
