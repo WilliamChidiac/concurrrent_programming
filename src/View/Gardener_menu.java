@@ -14,6 +14,10 @@ public class Gardener_menu extends JPanel {
     //Attribute that contains the map of the game
     private Main_panel map;
 
+    //Attribute that contains the shop
+    private Shop shop;
+
+
     /**
      * Constructor that creates the gardener's menu with the buttons interactions
      * @param main the map of the game
@@ -25,6 +29,10 @@ public class Gardener_menu extends JPanel {
         this.setBackground(Color.lightGray);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
+        //Initialization of the JFrame shop
+        this.shop = new Shop(map, sp);
+        this.hideShop();
+
         //Panel that contains the buttonsPanel for the gardener
         JPanel buttonsPanel = new JPanel(new GridLayout(2,1));
         buttonsPanel.setBackground(Color.lightGray);
@@ -33,7 +41,10 @@ public class Gardener_menu extends JPanel {
         JButton b1 = new JButton("Plant");
         b1.addActionListener(e ->
         {
-            Shop shop = new Shop(map, sp);
+            //If the shop is not visible, show it
+            if(!this.shop.isVisible()) this.showShop();
+            //If the shop is visible, hide it
+            else this.hideShop();
         }
         );
         JButton b2 = new JButton("Stay");
@@ -43,6 +54,21 @@ public class Gardener_menu extends JPanel {
 
         //Add the buttonsPanel to the gardener's menu
         this.add(buttonsPanel, BorderLayout.NORTH);
+    }
+
+    //Hide the shop JFrame
+    public void hideShop() {
+        this.shop.setVisible(false);
+    }
+
+    //Show the shop JFrame
+    public void showShop() {
+        this.shop.setVisible(true);
+    }
+
+    //Dispose the shop JFrame
+    public void disposeShop() {
+        this.shop.dispose();
     }
 
     /**

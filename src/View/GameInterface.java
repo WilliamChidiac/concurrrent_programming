@@ -27,7 +27,6 @@ public class GameInterface extends JFrame{
         //Panel that contains the map
         Main_panel map = new Main_panel();
         map.setBackground(Color.GREEN);
-
         sp.setGameInterface(this);
         
         Unite_controle_view u1 = new Unite_controle_view(new Point(50, 50), Color.RED);
@@ -41,7 +40,7 @@ public class GameInterface extends JFrame{
 
         (new Growth()).start();
 
-        //Panel that contains the buttonsPanel for the gardener
+        //Panel that contains the menu of the gardener
         this.gardenerPanel = new Gardener_menu(map, sp);
 
         //Fuse the panel of the map and the panel of the buttonsPanel in one main panel
@@ -118,6 +117,7 @@ public class GameInterface extends JFrame{
     public void win(){
         //Shut the game window
         this.dispose();
+        this.gardenerPanel.disposeShop();
 
         //Create the win window
         JFrame win = new JFrame("You win !");
