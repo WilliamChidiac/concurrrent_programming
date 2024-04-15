@@ -10,13 +10,12 @@ import Controller.Select_unit;
 import Modele.Unite_controle;
 
 public class Unite_controle_view extends JPanel{
-    private int radius;
+    private static final int radius = Constant_view.RADIUS_UNIT;
     private Color color;
     private Unite_controle unite;
     private static Unite_controle_view selected_unit = null;
     public Unite_controle_view(Point p, Color c){
         this.color = c;
-        this.radius = Constant_view.RADIUS_UNIT;
         this.unite = new Unite_controle(p);
         this.addMouseListener(new Select_unit(this));
         this.setBounds(p.x - radius, p.y - radius, radius*2, 2*radius);

@@ -8,6 +8,7 @@ import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import Modele.Lapins_generator;
 import Modele.Score_and_prices;
 import View.GameInterface;
 import View.Refresh;
@@ -34,6 +35,9 @@ public class App {
         //Creation of the refresh thread
         Refresh refresh = new Refresh(gameInterface);
         refresh.start();
+
+        Lapins_generator lg = new Lapins_generator();
+        lg.start();
 
         //Display the window
         gameInterface.setVisible(true);

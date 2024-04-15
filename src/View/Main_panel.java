@@ -4,8 +4,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
 
 import Controller.Move_unit;
+import Modele.Lapins;
 
 /**
  * Main panel of the application
@@ -45,5 +48,19 @@ public class Main_panel extends JPanel  {
         GameInterface gameInterface = get_game_interface();
         gameInterface.setToStandardMenu();
         Unite_controle_view.stop_movement();
+    }
+
+    public void paint_lapin(Graphics g, Point p){
+        int radius_lapin = Constant_view.RADIUS_LAPIN;
+        g.setColor(Constant_view.LAPIN_COLOR);
+        g.fillOval(p.x - radius_lapin, p.y - radius_lapin, radius_lapin * 2, radius_lapin * 2);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        for (Lapins lapin : Lapins.get_all_lapins()) {
+            paint_lapin(g, lapin.get_current_location());
+        }
     }
 }

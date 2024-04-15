@@ -2,29 +2,21 @@ package Modele;
 
 import java.awt.Point;
 import java.util.Collection;
-import java.util.HashMap;
 
 import View.Constant_view;
 
 public class Deplacement_lapin extends Deplacement{
     private Lapins lapin;
-    private int id;
     private Plant closest_plant = null;
-    private static int id_counter = 0;
-    private static HashMap<Integer, Deplacement_lapin> all_lapins = new HashMap<Integer, Deplacement_lapin>();
 
     public Deplacement_lapin(Lapins lapin) {
         super(lapin.get_current_location());
         this.lapin = lapin;
-        this.id = id_counter++;
-        all_lapins.put(id, this);
     }
 
     public Deplacement_lapin(Point lapin_loc){
         super(lapin_loc);
         this.lapin = new Lapins(lapin_loc);
-        this.id = id_counter++;
-        all_lapins.put(id, this);
     }
 
 
@@ -73,6 +65,7 @@ public class Deplacement_lapin extends Deplacement{
         }
         cible = new Point((int) (Constant_view.WIDTH_WINDOW*1.25), (int) (Constant_view.HEIGHT_WINDOW*1.25));
         deplace(current);
+        Lapins.remove_lapin(lapin.get_id());
     }
 
 
