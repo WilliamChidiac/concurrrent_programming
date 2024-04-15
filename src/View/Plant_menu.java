@@ -1,8 +1,15 @@
 package View;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Point;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import Modele.Plant;
-import javax.swing.*;
-import java.awt.*;
 
 public class Plant_menu extends JPanel{
 
@@ -19,7 +26,7 @@ public class Plant_menu extends JPanel{
      */
     public Plant_menu(Plant p) {
         //Initialization of the plant's menu
-        super(new GridLayout(5, 1));
+        super(new GridLayout(6, 1));
         this.plant = p;
         this.setBackground(Color.lightGray);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -31,6 +38,9 @@ public class Plant_menu extends JPanel{
         JTextField str_plant_cost = new JTextField("Plant's cost : " + this.plant.getCost());
         str_plant_cost.setEditable(false);
         str_plant_cost.setBackground(Color.ORANGE);
+        JTextField str_plant_money = new JTextField("Plant's value : " + this.plant.getMoney_collected());
+        str_plant_money.setEditable(false);
+        str_plant_money.setBackground(Color.ORANGE);
         JTextField str_plant_growthTime = new JTextField("Plant's growthTime : " + this.plant.getGrowthTime());
         str_plant_growthTime.setEditable(false);
         str_plant_growthTime.setBackground(Color.ORANGE);
@@ -48,6 +58,7 @@ public class Plant_menu extends JPanel{
         //Add the fields to the plant's menu
         this.add(str_plant_xp);
         this.add(str_plant_cost);
+        this.add(str_plant_money);
         this.add(str_plant_growthTime);
         this.add(str_plant_pos);
         this.add(this.str_plant_collectable);
@@ -75,7 +86,7 @@ public class Plant_menu extends JPanel{
         Refresh refresh = new Refresh(map);
         refresh.start();*/
 
-        frame.add(new Plant_menu(new Plant(2, 3, 4, new Point(100, 100))));
+        frame.add(new Plant_menu(new Plant(2, 3, 4, new Point(100, 100), 10)));
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

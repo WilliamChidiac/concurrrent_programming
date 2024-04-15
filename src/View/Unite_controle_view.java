@@ -2,11 +2,12 @@ package View;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.JPanel;
 import java.awt.Point;
 
-import Modele.Unite_controle;
+import javax.swing.JPanel;
+
 import Controller.Select_unit;
+import Modele.Unite_controle;
 
 public class Unite_controle_view extends JPanel{
     private int radius;

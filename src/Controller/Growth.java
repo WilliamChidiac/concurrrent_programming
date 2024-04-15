@@ -10,7 +10,7 @@ public class Growth extends Thread{
     @Override
     public void run() {
         while (true) {
-            //for each plant, if it is not fully grown, it will grow        
+            //for each plant, if it is not fully grown, it will grow
             for (Plant plant: Plant.getAllPlants()) {
                 if (plant.getGrowthadvance() < plant.getGrowthTime()) {
                     plant.grow();

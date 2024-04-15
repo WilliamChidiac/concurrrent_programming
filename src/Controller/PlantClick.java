@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -25,8 +26,11 @@ public class PlantClick extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         Plant plant = this.plant_view.getPlant();
         if (plant.getGrowthadvance() == plant.getGrowthTime() && isCollectable()) {
-            int x = plant.gather();
-            score_and_prices.addScore(x);
+            Point m_and_xp = plant.gather();
+            int money = m_and_xp.x;
+            int xp = m_and_xp.y;
+            score_and_prices.addScore(xp);
+            score_and_prices.addMoney(money);
             JPanel parent = (JPanel) this.plant_view.getParent();
             parent.remove(this.plant_view);
             parent.revalidate();

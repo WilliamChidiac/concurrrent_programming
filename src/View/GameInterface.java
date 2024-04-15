@@ -1,12 +1,17 @@
 package View;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Point;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 import Controller.Growth;
-import Modele.Score_and_prices;
 import Modele.Plant;
+import Modele.Score_and_prices;
 
 public class GameInterface extends JFrame{
     //Attribute that contains the principal panel of the game
@@ -31,8 +36,8 @@ public class GameInterface extends JFrame{
         
         Unite_controle_view u1 = new Unite_controle_view(new Point(50, 50), Color.RED);
         Unite_controle_view u2 = new Unite_controle_view(new Point(200, 200), Color.BLUE);
-        Plant_view pv1 = new Plant_view(2, 3, 4, new Point(100, 100), sp);
-        Plant_view pv2 = new Plant_view(2, 3, 4, new Point(100, 200), sp);
+        Plant_view pv1 = new Plant_view(2, 3, 4, new Point(100, 100), sp, 10);
+        Plant_view pv2 = new Plant_view(2, 3, 4, new Point(100, 200), sp, 20);
         map.add_unit(u2);
         map.add_unit(u1);
         map.add_plant(pv1);
@@ -64,6 +69,14 @@ public class GameInterface extends JFrame{
 
         //Update the text of the first JTextField with the new score
         top.updateScore(score);
+    }
+
+    public void updateMoney(int money) {
+        //Get the top layer
+        TopLayer top = (TopLayer) this.windowPanel.getComponent(1);
+
+        //Update the text of the second JTextField with the new money
+        top.updateMoney(money);
     }
 
     //Method that allows to remove the last panel added and add the gardenerMenu to the topLayer
