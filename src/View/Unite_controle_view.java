@@ -32,7 +32,7 @@ public class Unite_controle_view extends JPanel{
     }
 
     public static void stop_movement(){
-        selected_unit.unite.setIs_running(false);
+        selected_unit.unite.reset_movement();
         selected_unit = null;
     }
 

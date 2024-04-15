@@ -32,7 +32,9 @@ public class Plant {
         return plants.get(id);
     }
     public static Plant removePlant(int id) {
-        return plants.remove(id);
+        Plant p = plants.remove(id);
+        p.isGathered = true;
+        return p;
     }
     public static Collection<Plant> getAllPlants() {
         return plants.values();
