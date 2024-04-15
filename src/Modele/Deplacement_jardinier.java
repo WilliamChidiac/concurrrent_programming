@@ -1,7 +1,6 @@
 package Modele;
 
 import java.awt.Point;
-import java.lang.Math;
 
 /**
  * A thread that moves the unit to the given point
