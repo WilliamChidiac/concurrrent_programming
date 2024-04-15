@@ -39,7 +39,9 @@ public class Deplacement_lapin extends Deplacement{
                 closest_plant = plant;
             }
         }
-        if (cible_jard.distance(lapin_pos) < cible_plant.distance(lapin_pos)) {
+        if (closest_plant == null) {
+            cible = lapin.get_current_location();
+        }else if (cible_jard.distance(lapin_pos) < cible_plant.distance(lapin_pos)) {
             cible = new Point(lapin_pos.x - cible_plant.x, lapin_pos.y - cible_plant.y);
         }else{
             cible = cible_plant;
