@@ -2,7 +2,6 @@ package Modele;
 
 import java.awt.Point;
 import java.util.HashMap;
-import java.lang.Math;
 
 public class Unite_controle {
     private static int id_counter = 0;
@@ -17,7 +16,6 @@ public class Unite_controle {
         this.current_location = current_location;
         all_unit.put(id, this);
     }
-
     /**
      * Get the unit with the given id
      * @param id the id of the unit

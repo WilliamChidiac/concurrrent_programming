@@ -10,6 +10,7 @@ public class Plant {
     private static HashMap<Integer, Plant> plants = new HashMap<Integer, Plant>();
     private static int id_counter = 0;
     private int xp;
+    private int money_collected;
     private int cost;
     private int growthTime;
     private int id;
@@ -17,13 +18,14 @@ public class Plant {
     private boolean isGathered;
     private Point position;
 
-    public Plant(int xp, int cost, int growthTime, Point pos) {
+    public Plant(int xp, int cost, int growthTime, Point pos, int money_collected) {
         this.xp = xp;
         this.cost = cost;
         this.growthTime = growthTime;
         this.id = id_counter++;
         this.growthadvance = 0;
         this.position = pos;
+        this.money_collected = money_collected;
         plants.put(id, this);
     }
     public static Plant getPlant(int id) {
@@ -74,9 +76,10 @@ public class Plant {
         return isGathered;
     }
 
-    public int gather() {
+    public Point gather() {
         this.isGathered = true;
-        return xp;
+        Point m_and_xp = new Point(money_collected, xp);
+        return m_and_xp;
     }
 
     public static Plant createRandomPlant() {
@@ -85,7 +88,8 @@ public class Plant {
         int growthTime = (int) (Math.random() * 20);
         Point position = new Point((int) (Math.random() * 500),
                                     (int) (Math.random() * 500));
-        return new Plant(xp, cost, growthTime, position);
+        int money_collected = (int) (Math.random() * 100);
+        return new Plant(xp, cost, growthTime, position, money_collected);
     }
 
 }

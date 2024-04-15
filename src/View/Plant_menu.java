@@ -1,8 +1,15 @@
 package View;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Point;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import Modele.Plant;
-import javax.swing.*;
-import java.awt.*;
 
 public class Plant_menu extends JPanel{
 
@@ -75,7 +82,7 @@ public class Plant_menu extends JPanel{
         Refresh refresh = new Refresh(map);
         refresh.start();*/
 
-        frame.add(new Plant_menu(new Plant(2, 3, 4, new Point(100, 100))));
+        frame.add(new Plant_menu(new Plant(2, 3, 4, new Point(100, 100), 10)));
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

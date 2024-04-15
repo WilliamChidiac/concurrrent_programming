@@ -1,9 +1,15 @@
 package View;
 
-import Modele.Score_and_prices;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Point;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import Modele.Score_and_prices;
 
 public class Shop extends JFrame{
 
@@ -30,8 +36,18 @@ public class Shop extends JFrame{
         //Add buttons to the panel for the shop, each buttons plant a plant when clicked
         JButton plant1 = new JButton("Plant 1");
         plant1.addActionListener(e -> {
-            this.addPlant(this.map, this.sp, 2, 3, 4);
+            if (sp.getMoney() >= 3){
+                this.addPlant(this.map, this.sp, 2, 3, 4, 10);
+                sp.removeMoney(3);
+            }
         });
+        sp.addPropertyChangeListener(evt -> {
+            if ("money".equals(evt.getPropertyName())) {
+                plant1.setEnabled((int) evt.getNewValue() >= 3);
+            }
+        });
+        boolean condition = sp.getMoney() >= 3;
+        plant1.setEnabled(condition);
         buttonsShop.add(plant1);
         buttonsShop.add(new JButton("Plant 2"));
         buttonsShop.add(new JButton("Plant 3"));
@@ -55,9 +71,9 @@ public class Shop extends JFrame{
      *            xp the experience of the plant, cost the cost of the plant,
      *            growth_time the time of growth of the plant
      */
-    public void addPlant(Main_panel map, Score_and_prices sp, int xp, int cost, int growth_time){
+    public void addPlant(Main_panel map, Score_and_prices sp, int xp, int cost, int growth_time, int money_collected){
         Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
-        Plant_view pv = new Plant_view(xp, cost, growth_time, coordinate, sp);
+        Plant_view pv = new Plant_view(xp, cost, growth_time, coordinate, sp, money_collected);
         map.add_plant(pv);
     }
 
