@@ -11,6 +11,7 @@ import javax.swing.KeyStroke;
 import Modele.Score_and_prices;
 import View.GameInterface;
 import View.Refresh;
+import View.Time;
 
 
 public class App {
@@ -34,6 +35,10 @@ public class App {
         //Creation of the refresh thread
         Refresh refresh = new Refresh(gameInterface);
         refresh.start();
+
+        //Creation of the time thread
+        Time t = new Time(gameInterface);
+        t.start();
 
         //Display the window
         gameInterface.setVisible(true);

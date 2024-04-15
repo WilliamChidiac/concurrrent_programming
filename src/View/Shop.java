@@ -51,16 +51,16 @@ public class Shop extends JFrame{
         plant1.setEnabled(condition);
         buttonsShop.add(plant1);
 
-        JButton plant2 = new JButton("Plant 2");
+        JButton plant2 = new JButton("Finish Plant");
         plant2.addActionListener(e->{
             this.addPlant(this.map, this.sp, 200, 3, 0, 0);
         });
         buttonsShop.add(plant2);
 
-        JButton plant3 = new JButton("Plant 3");
+        JButton plant3 = new JButton("Plant 2");
         plant3.addActionListener(e -> {
             if (sp.getMoney() >= 10){
-                this.addPlant(this.map, this.sp, 40, 10, 60, 50);
+                this.addPlant(this.map, this.sp, 50, 40, 20, 50);
                 sp.removeMoney(10);
             }
         });

@@ -15,4 +15,7 @@ public class Constant_view {
     public static final int PLANT_BH = 10;
     public static final int PLANT_GAP = 10;
     public static final int PLANT_CENTERING = 25;
+
+    //Constant that defines the length of the game
+    public static final int TIME = 60;
 }

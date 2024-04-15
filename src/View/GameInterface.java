@@ -26,6 +26,9 @@ public class GameInterface extends JFrame{
     //Attribute that contains the panel of the rabbit
     private JPanel rabbitPanel;
 
+    //Attribute that shows if the game is ended
+    private boolean ended = false;
+
     //Constructor that creates the window
     public GameInterface(String game_title, Score_and_prices sp){
         super(game_title);
@@ -62,6 +65,15 @@ public class GameInterface extends JFrame{
         this.pack();
     }
 
+    //Method that allows to update the time in the top layer
+    public void updateTime(int time) {
+        //Get the top layer
+        TopLayer top = (TopLayer) this.windowPanel.getComponent(1);
+
+        //Update the text of the second JTextField with the new time
+        top.updateTime(time);
+    }
+
     //Method that allows to update the score in the top layer
     public void updateScore(int score) {
         //Get the top layer
@@ -71,6 +83,7 @@ public class GameInterface extends JFrame{
         top.updateScore(score);
     }
 
+    //Method that allows to update the money in the top layer
     public void updateMoney(int money) {
         //Get the top layer
         TopLayer top = (TopLayer) this.windowPanel.getComponent(1);
@@ -126,11 +139,17 @@ public class GameInterface extends JFrame{
         ((TopLayer) this.windowPanel.getComponent(1)).setTitle("Menu");
     }
 
+    //Method that allows to know if the game is ended
+    public boolean isEnded(){
+        return this.ended;
+    }
+
     //Method that allows to display the win window
     public void win(){
         //Shut the game window
         this.dispose();
         this.gardenerPanel.disposeShop();
+        this.ended = true;
 
         //Create the win window
         JFrame win = new JFrame("You win !");
@@ -138,5 +157,20 @@ public class GameInterface extends JFrame{
         win.add(new JLabel("You win !"));
         win.pack();
         win.setVisible(true);
+    }
+
+    //Method that allows to display the defeat window
+    public void lose(){
+        //Shut the game window
+        this.dispose();
+        this.gardenerPanel.disposeShop();
+        this.ended = true;
+
+        //Create the defeat window
+        JFrame lose = new JFrame("You lose !");
+        lose.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lose.add(new JLabel("You lose !"));
+        lose.pack();
+        lose.setVisible(true);
     }
 }
