@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Modele.EspecePlante;
 import Modele.Score_and_prices;
 
 public class Shop extends JFrame{
@@ -73,7 +74,7 @@ public class Shop extends JFrame{
      */
     public void addPlant(Main_panel map, Score_and_prices sp, int xp, int cost, int growth_time, int money_collected){
         Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
-        Plant_view pv = new Plant_view(xp, cost, growth_time, coordinate, sp, money_collected);
+        Plant_view pv = new Plant_view(xp, new EspecePlante(), coordinate, sp, money_collected);
         map.add_plant(pv);
     }
 

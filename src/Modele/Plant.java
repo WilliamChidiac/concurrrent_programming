@@ -11,17 +11,15 @@ public class Plant {
     private static int id_counter = 0;
     private int xp;
     private int money_collected;
-    private int cost;
-    private int growthTime;
+   private EspecePlante esplante;
     private int id;
     private int growthadvance;
     private boolean isGathered;
     private Point position;
 
-    public Plant(int xp, int cost, int growthTime, Point pos, int money_collected) {
+    public Plant(int xp, EspecePlante plante, Point pos, int money_collected) {
         this.xp = xp;
-        this.cost = cost;
-        this.growthTime = growthTime;
+        this.esplante = new EspecePlante();
         this.id = id_counter++;
         this.growthadvance = 0;
         this.position = pos;
@@ -45,11 +43,14 @@ public class Plant {
     }
 
     public int getCost() {
-        return cost;
+        return this.esplante.getPrix();
     }
 
     public int getGrowthTime() {
-        return growthTime;
+        return esplante.getTimeGrowth();
+    }
+    public EspecePlante getEsplante(){
+        return this.esplante;
     }
 
     public int getId() {
@@ -65,13 +66,13 @@ public class Plant {
     }
 
     public void grow() {
-        if (growthadvance < growthTime) {
+        if (growthadvance < esplante.getTimeGrowth()) {
             growthadvance++;
         }
     }
 
     public boolean isGrown() {
-        return growthadvance == growthTime;
+        return growthadvance == esplante.getTimeGrowth();
     }
 
     public boolean isGathered() {
@@ -91,7 +92,7 @@ public class Plant {
         Point position = new Point((int) (Math.random() * 500),
                                     (int) (Math.random() * 500));
         int money_collected = (int) (Math.random() * 100);
-        return new Plant(xp, cost, growthTime, position, money_collected);
+        return new Plant(xp, new EspecePlante(), position, money_collected);
     }
 
 }

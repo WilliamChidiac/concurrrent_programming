@@ -102,6 +102,4 @@ public class EspecePlante {
             this.conseil3 = "Retirez les fleurs fanées dès qu'elles se fanent pour encourager de nouvelles floraisons.";
         }
 
-    }
-
 }

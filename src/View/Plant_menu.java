@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Modele.EspecePlante;
 import Modele.Plant;
 
 public class Plant_menu extends JPanel{
@@ -35,10 +36,10 @@ public class Plant_menu extends JPanel{
         JTextField str_plant_xp = new JTextField("Plant's xp : " + this.plant.getXp());
         str_plant_xp.setEditable(false);
         str_plant_xp.setBackground(Color.ORANGE);
-        JTextField str_plant_cost = new JTextField("Plant's cost : " + this.plant.getCost());
+        JTextField str_plant_cost = new JTextField("Plant's cost : " + this.plant.getEsplante().getPrix());
         str_plant_cost.setEditable(false);
         str_plant_cost.setBackground(Color.ORANGE);
-        JTextField str_plant_growthTime = new JTextField("Plant's growthTime : " + this.plant.getGrowthTime());
+        JTextField str_plant_growthTime = new JTextField("Plant's growthTime : " + this.plant.getEsplante().getTimeGrowth());
         str_plant_growthTime.setEditable(false);
         str_plant_growthTime.setBackground(Color.ORANGE);
         JTextField str_plant_pos = new JTextField("Plant's location : ("
@@ -82,7 +83,7 @@ public class Plant_menu extends JPanel{
         Refresh refresh = new Refresh(map);
         refresh.start();*/
 
-        frame.add(new Plant_menu(new Plant(2, 3, 4, new Point(100, 100), 10)));
+        frame.add(new Plant_menu(new Plant(2, new EspecePlante(), new Point(100, 100), 10)));
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
