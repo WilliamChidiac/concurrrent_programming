@@ -1,80 +1,105 @@
 package View;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Point;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import Modele.EspecePlante;
 import Modele.Score_and_prices;
 
 public class Shop extends JFrame{
 
-    //Attribute that contains the map of the game
     private Main_panel map;
-
-    //Attribute that contains the score and prices of the game
     private Score_and_prices sp;
 
-    /**
-     * Constructor that creates the shop window with the plant buttons
-     * @param m the map of the game, sp the score and prices of the game
-     */
-    public Shop(Main_panel m, Score_and_prices sp){
-        super("Shop");
-        this.map = m;
-        this.sp = sp;
+    public JPanel creePanFleur(EspecePlante plante){
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        // Ajout boutton Informations et Acheter
+        JButton info = new JButton("Informations");
+        info.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InfoShopView infowindow = new InfoShopView(plante);
+            }
+        });
+        JButton acheter = new JButton("Acheter");
+        JPanel buttonPanel = new JPanel(new GridLayout(1,2));
+        buttonPanel.add(info);
+        buttonPanel.add(acheter);
+        panel.add(buttonPanel, BorderLayout.SOUTH);
+
+        JPanel imagePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(plante.getCouleur()); // Couleur du carré
+                g.fillRect(0, 0, getWidth(), getHeight()); // Dessin du carré
+            }
+        };
+
+        imagePanel.setPreferredSize(new Dimension(150, 150)); // Taille du carré (à ajuster si nécessaire)
+        panel.add(imagePanel, BorderLayout.CENTER);
+
+        // Ajout Caractéristique
+        JTextArea zoneTexte = new JTextArea(plante.getNom());
+        zoneTexte.setEditable(false);
+        panel.add(zoneTexte, BorderLayout.NORTH);
+
+        return panel;
+
+
+    }
+    public Shop(){
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(500, 500);
 
         //Panel that contains the buttons without interaction
-        JPanel buttonsShop = new JPanel(new GridLayout(2,2));
-        buttonsShop.setBackground(Color.lightGray);
-        buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        JPanel buttonsShop = new JPanel(new GridLayout(2,2)); // Div en 2 lignes 2 colonnes
 
-        //Add buttons to the panel for the shop, each buttons plant a plant when clicked
-        JButton plant1 = new JButton("Plant 1");
-        plant1.addActionListener(e -> {
-            if (sp.getMoney() >= 3){
-                this.addPlant(this.map, this.sp, 2, 3, 4, 10);
-                sp.removeMoney(3);
-            }
-        });
-        sp.addPropertyChangeListener(evt -> {
-            if ("money".equals(evt.getPropertyName())) {
-                plant1.setEnabled((int) evt.getNewValue() >= 3);
-            }
-        });
-        boolean condition = sp.getMoney() >= 3;
-        plant1.setEnabled(condition);
-        buttonsShop.add(plant1);
-        buttonsShop.add(new JButton("Plant 2"));
-        buttonsShop.add(new JButton("Plant 3"));
+        // Ajout des panels
 
-        this.add(buttonsShop);
-        this.setSize(800, 600);
+        EspecePlante rose = new EspecePlante();
+        rose.initRose(15, 5);
+        JPanel RoseP = creePanFleur(rose);
+        buttonsShop.add(RoseP);
+
+        EspecePlante tulipe = new EspecePlante();
+        tulipe.initTulipe(10, 3);
+        JPanel TulipeP = creePanFleur(tulipe);
+        buttonsShop.add(TulipeP);
+
+        EspecePlante magnolia = new EspecePlante();
+        magnolia.initMagnolia(12, 7);
+        JPanel MagnoliaP = creePanFleur(magnolia);
+        buttonsShop.add(MagnoliaP);
+
+        EspecePlante lys = new EspecePlante();
+        lys.initLys(15, 5);
+        JPanel LysP = creePanFleur(lys);
+        buttonsShop.add(LysP);
+
+        buttonsShop.setBackground(Color.pink);
+
+        buttonsShop.setPreferredSize(new Dimension(Constant_view.WIDTH_WINDOW/2, Constant_view.WIDTH_WINDOW/2));
+        buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+
+        TopLayer top = new TopLayer("Shop's actions :");
+        top.add(buttonsShop, BorderLayout.SOUTH);
+        this.add(top);
+
+
         this.pack();
-        this.setVisible(true);
     }
 
-    /**
-     * Default constructor
-     */
-    public Shop() {
-        this(null, null);
-    }
-
-    /**
-     * Method that adds a plant to the map
-     * @param map the map of the game, sp the score and prices of the game,
-     *            xp the experience of the plant, cost the cost of the plant,
-     *            growth_time the time of growth of the plant
-     */
-    public void addPlant(Main_panel map, Score_and_prices sp, int xp, int cost, int growth_time, int money_collected){
+    public void addPlant(Main_panel map, Score_and_prices sp, int xp, EspecePlante plante, int money_collected){
         Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
-        Plant_view pv = new Plant_view(xp, new EspecePlante(), coordinate, sp, money_collected);
+        Plant_view pv = new Plant_view(xp, plante, coordinate, sp, money_collected);
         map.add_plant(pv);
     }
 

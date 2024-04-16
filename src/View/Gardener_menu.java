@@ -1,6 +1,8 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -30,12 +32,14 @@ public class Gardener_menu extends JPanel {
         buttonsPanel.setBackground(Color.lightGray);
 
         //Definitions and Add buttons to the buttonsPanel
-        JButton b1 = new JButton("Plant");
-        b1.addActionListener(e ->
-        {
-            Shop shop = new Shop(map, sp);
-        }
-        );
+        JButton b1 = new JButton("Shop");
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame shopFrame = new Shop();
+                shopFrame.setVisible(true);
+            }
+        });
         JButton b2 = new JButton("Stay");
         b2.addActionListener(e -> map.stay());
         buttonsPanel.add(b1);
