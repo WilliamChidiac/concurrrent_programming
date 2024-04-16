@@ -2,6 +2,10 @@ package Modele;
 
 import java.awt.*;
 
+import Modele.Constant_prix_temps;
+
+import static Modele.Constant_prix_temps.*;
+
 public class EspecePlante {
 
         private String nom;
@@ -53,10 +57,10 @@ public class EspecePlante {
             this.conseil3 = null;
         }
 
-        public void initRose(int prix, int time){
+        public void initRose(){
             this.nom = "Rose";
-            this.prix = prix;
-            this.timeGrowth = time;
+            this.prix = roseP;
+            this.timeGrowth = roseT;
             this.couleur = Color.PINK;
 
             this.description = "Fleur emblématique appréciée pour sa beauté et son parfum, souvent associée à l'amour et à la romance.";
@@ -67,10 +71,10 @@ public class EspecePlante {
 
         }
 
-        public void initMagnolia(int prix, int time){
+        public void initMagnolia(){
             this.nom = "Magnolia";
-            this.prix = prix;
-            this.timeGrowth = time;
+            this.prix = magnoliaP;
+            this.timeGrowth = magnoliaT;
             this.couleur = Color.WHITE;
 
             this.description = "Arbre élégant et majestueux, réputé pour ses grandes fleurs parfumées et ses feuilles brillantes.";
@@ -79,10 +83,10 @@ public class EspecePlante {
             this.conseil3 = "Taillez légèrement la magnolia après la floraison pour éliminer les branches mortes et encourager une nouvelle croissance saine.";
         }
 
-        public void initTulipe(int prix, int time){
+        public void initTulipe(){
             this.nom = "Tulipe";
-            this.prix = prix;
-            this.timeGrowth = time;
+            this.prix = tulP;
+            this.timeGrowth = tulT;
             this.couleur = Color.MAGENTA;
 
             this.description = "Fleur printanière caractérisée par ses pétales colorés et ses tiges élancées, offrant une beauté délicate dans les jardins et les bouquets.";
@@ -90,10 +94,10 @@ public class EspecePlante {
             this.conseil2 = "Arrosez les tulipes modérément après la plantation et pendant leur croissance";
             this.conseil3 = "Une fois que les tulipes ont fleuri, coupez les fleurs fanées pour encourager la plante à concentrer son énergie sur le développement des bulbes pour la saison suivante.";
         }
-        public void initLys(int prix, int time){
+        public void initLys(){
             this.nom = "Lys";
-            this.prix = prix;
-            this.timeGrowth = time;
+            this.prix = lysP;
+            this.timeGrowth = lysT;
             this.couleur = Color.YELLOW;
 
             this.description = "Le lys, avec ses pétales délicats et son parfum envoûtant, est une fleur majestueuse souvent associée à la pureté et à la sophistication.";

@@ -64,22 +64,22 @@ public class Shop extends JFrame{
         // Ajout des panels
 
         EspecePlante rose = new EspecePlante();
-        rose.initRose(15, 5);
+        rose.initRose();
         JPanel RoseP = creePanFleur(rose);
         buttonsShop.add(RoseP);
 
         EspecePlante tulipe = new EspecePlante();
-        tulipe.initTulipe(10, 3);
+        tulipe.initTulipe();
         JPanel TulipeP = creePanFleur(tulipe);
         buttonsShop.add(TulipeP);
 
         EspecePlante magnolia = new EspecePlante();
-        magnolia.initMagnolia(12, 7);
+        magnolia.initMagnolia();
         JPanel MagnoliaP = creePanFleur(magnolia);
         buttonsShop.add(MagnoliaP);
 
         EspecePlante lys = new EspecePlante();
-        lys.initLys(15, 5);
+        lys.initLys();
         JPanel LysP = creePanFleur(lys);
         buttonsShop.add(LysP);
 
@@ -89,10 +89,10 @@ public class Shop extends JFrame{
         buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 
 
+
         TopLayer top = new TopLayer("Shop's actions :");
         top.add(buttonsShop, BorderLayout.SOUTH);
         this.add(top);
-
 
         this.pack();
     }

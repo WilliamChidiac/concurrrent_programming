@@ -24,7 +24,7 @@ public class TopLayer extends JPanel{
         super(new BorderLayout());
         this.setBackground(Color.darkGray);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        this.setPreferredSize(new Dimension(Constant_view.WIDTH_WINDOW/4, Constant_view.HEIGHT_WINDOW));
+        this.setPreferredSize(new Dimension(Constant_view.WIDTH_WINDOW, Constant_view.HEIGHT_WINDOW));
 
         //Create the textpanel with the textual characteristics
         this.textPanel = new JPanel(new GridLayout(3,1));
@@ -77,6 +77,7 @@ public class TopLayer extends JPanel{
         JFrame frame = new JFrame();
         TopLayer top = new TopLayer("Gardener's "+"1"+" actions :");
 
+        /*
         //Panel buttons
         JPanel buttonsPanel = new JPanel(new GridLayout(10,2));
         JButton b1 = new JButton("Change title");
@@ -87,7 +88,9 @@ public class TopLayer extends JPanel{
         buttonsPanel.add(new JButton("Market3"));
         buttonsPanel.add(new JButton("Market4"));
 
-        top.add(buttonsPanel, BorderLayout.CENTER);
+         */
+
+        // top.add(buttonsPanel, BorderLayout.CENTER);
         frame.add(top);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

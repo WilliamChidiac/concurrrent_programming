@@ -40,7 +40,7 @@ public class Gardener_menu extends JPanel {
                 shopFrame.setVisible(true);
             }
         });
-        JButton b2 = new JButton("Stay");
+        JButton b2 = new JButton("Retour");
         b2.addActionListener(e -> map.stay());
         buttonsPanel.add(b1);
         buttonsPanel.add(b2);
