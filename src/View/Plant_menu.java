@@ -83,7 +83,7 @@ public class Plant_menu extends JPanel{
         Refresh refresh = new Refresh(map);
         refresh.start();*/
 
-        frame.add(new Plant_menu(new Plant(2, new EspecePlante(), new Point(100, 100), 10)));
+        frame.add(new Plant_menu(new Plant(new EspecePlante(), new Point(100, 100), 10)));
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

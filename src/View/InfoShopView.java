@@ -7,7 +7,7 @@ import java.awt.*;
 public class InfoShopView extends JFrame{
 
     public InfoShopView(EspecePlante plante) {
-        setTitle("Informations sur " + plante.getNom());
+        setTitle(plante.getNom());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Ajouter des composants pour afficher les informations sur la plante

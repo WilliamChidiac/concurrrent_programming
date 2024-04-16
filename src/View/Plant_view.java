@@ -13,9 +13,10 @@ import Modele.Score_and_prices;
 
 public class Plant_view extends JPanel{
     private int plant_id;
-    public Plant_view(int xp, EspecePlante plante, Point pos, Score_and_prices sp, int money_collected) {
+    public Plant_view(EspecePlante plante, Point pos, Score_and_prices sp, int money_collected) {
         super();
-        Plant p = new Plant(xp, plante ,pos, money_collected);
+        plante.initPlante(plante);
+        Plant p = new Plant(plante ,pos, money_collected);
         this.plant_id = p.getId();
         this.addMouseListener(new PlantClick(this, sp));
         this.setBounds(pos.x, pos.y, Constant_view.PLANT_BW, (Constant_view.PLANT_BH+Constant_view.PLANT_GAP+Constant_view.PLANT_RADIUS*2));
@@ -55,6 +56,7 @@ public class Plant_view extends JPanel{
             g.fillRect(0,0, progressWidth, barHeight); // Draw the progress in the progression bar
         }
         
-        g.dispose();
+
+        // g.dispose();
     }
 }

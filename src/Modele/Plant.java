@@ -17,8 +17,8 @@ public class Plant {
     private boolean isGathered;
     private Point position;
 
-    public Plant(int xp, EspecePlante plante, Point pos, int money_collected) {
-        this.xp = xp;
+    public Plant(EspecePlante plante, Point pos, int money_collected) {
+
         this.esplante = new EspecePlante();
         this.id = id_counter++;
         this.growthadvance = 0;
@@ -92,7 +92,7 @@ public class Plant {
         Point position = new Point((int) (Math.random() * 500),
                                     (int) (Math.random() * 500));
         int money_collected = (int) (Math.random() * 100);
-        return new Plant(xp, new EspecePlante(), position, money_collected);
+        return new Plant(new EspecePlante(), position, money_collected);
     }
 
 }

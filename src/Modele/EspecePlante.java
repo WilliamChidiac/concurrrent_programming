@@ -2,9 +2,7 @@ package Modele;
 
 import java.awt.*;
 
-import Modele.Constant_prix_temps;
-
-import static Modele.Constant_prix_temps.*;
+import static Modele.Constant_prix_temps_xp.*;
 
 public class EspecePlante {
 
@@ -17,6 +15,7 @@ public class EspecePlante {
 
         private int prix;
         private int timeGrowth;
+        private int xp;
 
         public int getPrix() {
             return prix;
@@ -55,6 +54,7 @@ public class EspecePlante {
             this.conseil1 = null;
             this.conseil2 = null;
             this.conseil3 = null;
+            this.xp = 0;
         }
 
         public void initRose(){
@@ -62,6 +62,7 @@ public class EspecePlante {
             this.prix = roseP;
             this.timeGrowth = roseT;
             this.couleur = Color.PINK;
+            this.xp = roseXP;
 
             this.description = "Fleur emblématique appréciée pour sa beauté et son parfum, souvent associée à l'amour et à la romance.";
             this.conseil1 = "Arrosez régulièrement les roses au pied, en évitant de mouiller les feuilles, pour maintenir un sol humide mais bien drainé.";
@@ -76,6 +77,7 @@ public class EspecePlante {
             this.prix = magnoliaP;
             this.timeGrowth = magnoliaT;
             this.couleur = Color.WHITE;
+            this.xp = magnoliaXP;
 
             this.description = "Arbre élégant et majestueux, réputé pour ses grandes fleurs parfumées et ses feuilles brillantes.";
             this.conseil1 = "Plantez la magnolia dans un sol riche en matière organique, dans un endroit abrité du vent pour protéger ses fleurs délicates.";
@@ -88,6 +90,7 @@ public class EspecePlante {
             this.prix = tulP;
             this.timeGrowth = tulT;
             this.couleur = Color.MAGENTA;
+            this.xp = tulXP;
 
             this.description = "Fleur printanière caractérisée par ses pétales colorés et ses tiges élancées, offrant une beauté délicate dans les jardins et les bouquets.";
             this.conseil1 = "Plantez les bulbes de tulipes à l'automne";
@@ -99,11 +102,25 @@ public class EspecePlante {
             this.prix = lysP;
             this.timeGrowth = lysT;
             this.couleur = Color.YELLOW;
+            this.xp = lysXP;
 
             this.description = "Le lys, avec ses pétales délicats et son parfum envoûtant, est une fleur majestueuse souvent associée à la pureté et à la sophistication.";
             this.conseil1 = "Plantez les lys en les espaçant pour permettre une bonne circulation de l'air et éviter les maladies fongiques.";
             this.conseil2 = "Arrosez les lys régulièrement, en veillant à garder le sol légèrement humide mais pas détrempé.";
             this.conseil3 = "Retirez les fleurs fanées dès qu'elles se fanent pour encourager de nouvelles floraisons.";
         }
+
+    public void initPlante(EspecePlante plante){
+        String np = plante.getNom();
+        switch (np){
+            case "Rose" : plante.initRose();
+                break;
+            case "Tulipe" : plante.initTulipe();
+                break;
+            case "Lys" : plante.initLys();
+                break;
+            case "Magnolia" : plante.initMagnolia();
+        }
+    }
 
 }

@@ -24,10 +24,20 @@ public class Shop extends JFrame{
         info.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 InfoShopView infowindow = new InfoShopView(plante);
             }
         });
         JButton acheter = new JButton("Acheter");
+        acheter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                initPlante(plante);
+                achete(plante);
+
+            }
+        });
         JPanel buttonPanel = new JPanel(new GridLayout(1,2));
         buttonPanel.add(info);
         buttonPanel.add(acheter);
@@ -54,7 +64,32 @@ public class Shop extends JFrame{
 
 
     }
-    public Shop(){
+
+    public void achete(EspecePlante plante){
+
+        if(this.sp.getMoney() >= plante.getPrix()){
+            this.addPlant(this.map, this.sp, plante , 6);
+            this.sp.removeMoney(plante.getPrix());
+        }
+    }
+
+    public void initPlante(EspecePlante plante){
+        String np = plante.getNom();
+        switch (np){
+            case "Rose" : plante.initRose();
+            break;
+            case "Tulipe" : plante.initTulipe();
+            break;
+            case "Lys" : plante.initLys();
+            break;
+            case "Magnolia" : plante.initMagnolia();
+        }
+    }
+    public Shop(Main_panel m, Score_and_prices sp){
+
+        this.map = m;
+        this.sp = sp;
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(500, 500);
 
@@ -97,9 +132,9 @@ public class Shop extends JFrame{
         this.pack();
     }
 
-    public void addPlant(Main_panel map, Score_and_prices sp, int xp, EspecePlante plante, int money_collected){
+    public void addPlant(Main_panel map, Score_and_prices sp, EspecePlante plante, int money_collected){
         Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
-        Plant_view pv = new Plant_view(xp, plante, coordinate, sp, money_collected);
+        Plant_view pv = new Plant_view(plante, coordinate, sp, money_collected);
         map.add_plant(pv);
     }
 
@@ -109,7 +144,9 @@ public class Shop extends JFrame{
      */
     public static void main(String[] args) {
         //Test the visual of Shop_menu class
-        JFrame frame = new Shop();
+        Main_panel m = new Main_panel();
+        Score_and_prices sp = new Score_and_prices();
+        JFrame frame = new Shop(m,sp);
         frame.setVisible(true);
     }
 }

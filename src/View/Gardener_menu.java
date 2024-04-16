@@ -36,7 +36,7 @@ public class Gardener_menu extends JPanel {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame shopFrame = new Shop();
+                JFrame shopFrame = new Shop(main, sp);
                 shopFrame.setVisible(true);
             }
         });
