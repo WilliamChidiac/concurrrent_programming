@@ -41,7 +41,7 @@ public class PlantShop extends JPanel{
         info.addActionListener(e -> {
             infoview.setVisible(true);
         });
-        buy = new JButton("Acheter");
+        buy = new JButton("Acheter: " + pt.cost + " $");
         buy.addActionListener(e -> {
             if (sp.getMoney() > pt.cost){
                 sp.removeMoney(pt.cost);
@@ -55,7 +55,7 @@ public class PlantShop extends JPanel{
         button_Panel.add(buy);
         this.add(button_Panel, BorderLayout.SOUTH);
         this.setBackground(pt.color);
-        this.setPreferredSize(new Dimension(250, 150));
+        this.setPreferredSize(new Dimension(275, 150));
         JTextArea zone = new JTextArea(pt.nom);
         zone.setEditable(false);
         this.add(zone, BorderLayout.NORTH);
