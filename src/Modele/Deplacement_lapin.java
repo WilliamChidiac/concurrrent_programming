@@ -3,7 +3,10 @@ package Modele;
 import java.awt.Point;
 import java.util.Collection;
 
+import javax.swing.JPanel;
+
 import View.Constant_view;
+import View.Plant_view;
 
 public class Deplacement_lapin extends Deplacement{
     private Lapins lapin;
@@ -59,10 +62,14 @@ public class Deplacement_lapin extends Deplacement{
         Point current = lapin.get_current_location();
         while (lapin.is_alive()) {
             update_cible();
-            if (deplace(current)){ // if the rabbit reached the plant
-
-            }else{ // if the plant was gathered before he could eat it.
-
+            if (deplace(current) && closest_plant != null){ // if the rabbit reached the plant
+                int id = closest_plant.getId();
+                Plant_view pv = Plant_view.getPlant_view(id);
+                JPanel parent = (JPanel) pv.getParent();
+                parent.remove(pv);
+                parent.revalidate();
+                parent.repaint();
+                Plant.removePlant(id);
             }
         }
         cible = new Point((int) (Constant_view.WIDTH_WINDOW*1.25), (int) (Constant_view.HEIGHT_WINDOW*1.25));

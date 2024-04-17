@@ -75,6 +75,9 @@ public class Plant {
     public Color getColor() {
         return color;
     }
+    public void setGather(){
+        this.isGathered = true;
+    }
 
     public void grow() {
         if (growthadvance < growthTime) {
@@ -95,4 +98,5 @@ public class Plant {
         Point m_and_xp = new Point(money_collected, xp);
         return m_and_xp;
     }
+    
 }

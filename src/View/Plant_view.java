@@ -3,29 +3,33 @@ package View;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-
+import java.util.HashMap;
 import javax.swing.JPanel;
 
 import Controller.PlantClick;
 import Modele.Plant;
 import Modele.Score_and_prices;
 
+
 public class Plant_view extends JPanel{
+    private static HashMap<Integer, Plant_view> plant_views = new HashMap<Integer, Plant_view>();
     private int plant_id;
     public Plant_view(Plant p, Score_and_prices sp) {
         super();
         Point pos = p.getPosition();
         this.plant_id = p.getId();
+        plant_views.put(plant_id, this);
         this.addMouseListener(new PlantClick(this, sp));
         this.setBounds(pos.x, pos.y, Constant_view.PLANT_BW, (Constant_view.PLANT_BH+Constant_view.PLANT_GAP+Constant_view.PLANT_RADIUS*2));
         this.setOpaque(false);
-        
     }
 
     public Plant getPlant() {
         return Plant.getPlant(plant_id);
     }
-
+    public static Plant_view getPlant_view(int id){
+        return plant_views.get(id);
+    }
     public void paint(Graphics g) {
         super.paint(g);
         Plant plant = this.getPlant();

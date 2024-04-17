@@ -11,9 +11,10 @@ public abstract class Generator<T> extends Thread {
 
     @Override
     public void run(){
+        System.out.println("chouuuuu");
         for (int i = 0; i < init_num; i++){
             try{
-                Thread.sleep(5000);
+                Thread.sleep(1000);
                 generate();
             } catch (Exception e){
                 e.printStackTrace();
