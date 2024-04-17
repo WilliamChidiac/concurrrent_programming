@@ -1,21 +1,33 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Point;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import Controller.Round_initializer;
+
 import javax.swing.JLabel;
 
-import Controller.Growth;
 import Modele.Plant;
 import Modele.Score_and_prices;
 
 public class GameInterface extends JFrame{
+
+    private JPanel gameState;
+    private CardLayout states;
+    private Main_panel main_panel;
+    private Score_and_prices sc;
+
     //Attribute that contains the principal panel of the game
     private JPanel windowPanel;
+
+    private Round_initializer ri = null;
 
     //Attribute that contains the panel of the gardener
     private Gardener_menu gardenerPanel;
@@ -23,30 +35,19 @@ public class GameInterface extends JFrame{
     //Attribute that contains the panel of the plant
     private Plant_menu plantPanel;
 
-    //Attribute that contains the panel of the rabbit
-    private JPanel rabbitPanel;
-
     //Attribute that shows if the game is ended
     private boolean ended = false;
 
     //Constructor that creates the window
     public GameInterface(String game_title, Score_and_prices sp){
         super(game_title);
+
+        this.sc = sp;
         //Panel that contains the map
         Main_panel map = new Main_panel();
+        this.main_panel = map;
         map.setBackground(Color.GREEN);
         sp.setGameInterface(this);
-        
-        Unite_controle_view u1 = new Unite_controle_view(new Point(50, 50), Color.RED);
-        Unite_controle_view u2 = new Unite_controle_view(new Point(200, 200), Color.BLUE);
-        Plant_view pv1 = new Plant_view(2, 3, 4, new Point(100, 100), sp, 10);
-        Plant_view pv2 = new Plant_view(2, 3, 4, new Point(100, 200), sp, 20);
-        map.add_unit(u2);
-        map.add_unit(u1);
-        map.add_plant(pv1);
-        map.add_plant(pv2);
-
-        (new Growth()).start();
 
         //Panel that contains the menu of the gardener
         this.gardenerPanel = new Gardener_menu(map, sp);
@@ -61,8 +62,61 @@ public class GameInterface extends JFrame{
 
         //Set the parameters of the window and add the windowPanel to the window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.add(this.windowPanel);
+        states = new CardLayout();
+        gameState = new JPanel(states);
+        JPanel menu = new JPanel();
+        menu.add(new JLabel("Menu"));
+        JButton play = new JButton("Play");
+        play.addActionListener(e -> {
+            this.ri.start();
+            states.show(gameState, "game");
+            
+        });
+        menu.add(play);
+        menu.setPreferredSize(new Dimension(800, 600));
+        menu.setVisible(true);
+
+        JPanel win = new JPanel();
+        win.add(new JLabel("You win !"));
+        JPanel loose = new JPanel();
+        loose.add(new JLabel("You lose !"));
+        win.setPreferredSize(new Dimension(800, 600));
+        loose.setPreferredSize(new Dimension(800, 600));
+        win.setVisible(true);
+        loose.setVisible(true);
+        gameState.add(menu, "menu");
+        gameState.add(windowPanel, "game");
+        gameState.add(win, "win");
+        gameState.add(loose, "loose");
+        this.switch_window("menu");
+        gameState.setVisible(true);
+
+
+        this.add(gameState);
         this.pack();
+    }
+    public void switch_window(String state){
+        states.show(gameState, state);
+    }
+
+    //getter for mainpanel
+    public Main_panel getMain_panel(){
+        return this.main_panel;
+    }
+    //getter for score
+    public Score_and_prices getScore(){
+        return this.sc;
+    }
+
+    //setter for round init
+    public void round_init(Round_initializer rdi){
+        this.ri = rdi;
+    }
+
+    //Method that adds a plant
+    public void addPlant(Plant p){
+        Plant_view pv = new Plant_view(p, this.sc);
+        this.main_panel.add_plant(pv);
     }
 
     //Method that allows to update the time in the top layer
@@ -146,31 +200,11 @@ public class GameInterface extends JFrame{
 
     //Method that allows to display the win window
     public void win(){
-        //Shut the game window
-        this.dispose();
-        this.gardenerPanel.disposeShop();
-        this.ended = true;
-
-        //Create the win window
-        JFrame win = new JFrame("You win !");
-        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        win.add(new JLabel("You win !"));
-        win.pack();
-        win.setVisible(true);
+        this.switch_window("win");
     }
 
     //Method that allows to display the defeat window
     public void lose(){
-        //Shut the game window
-        this.dispose();
-        this.gardenerPanel.disposeShop();
-        this.ended = true;
-
-        //Create the defeat window
-        JFrame lose = new JFrame("You lose !");
-        lose.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        lose.add(new JLabel("You lose !"));
-        lose.pack();
-        lose.setVisible(true);
+        this.switch_window("loose");
     }
 }

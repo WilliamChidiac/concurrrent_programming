@@ -72,23 +72,4 @@ public class Plant_menu extends JPanel{
         this.str_plant_collectable.setText("Plant's collectable : " + this.plant.isGrown());
     }
 
-    /**
-     * Main method to test the Plant_menu class
-     * @param args
-     */
-    public static void main(String[] args) {
-        //Test the Plant_menu class
-        JFrame frame = new JFrame();
-        //Main_panel map = new Main_panel(null);
-        //Plant_view plant = new Plant_view(2, 3, 4, new Point(100, 100));
-
-        /*(new Growth()).start();
-        Refresh refresh = new Refresh(map);
-        refresh.start();*/
-
-        frame.add(new Plant_menu(new Plant(2, 3, 4, new Point(100, 100), 10)));
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
 }

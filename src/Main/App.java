@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -8,19 +9,18 @@ import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import Modele.Lapins_generator;
 import Modele.Score_and_prices;
+import View.Constant_view;
 import View.GameInterface;
 import View.Refresh;
-import View.Time;
-
+import Controller.Round_initializer;
 
 public class App {
     public static void main(String[] args) {
         //Creation of the window
         Score_and_prices sp = new Score_and_prices();
         GameInterface gameInterface = new GameInterface("Gardeners vs Rabbits",sp);
-
+        
         // Create a KeyStroke for the escape key
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         // Create an AbstractAction that disposes the frame
@@ -32,20 +32,16 @@ public class App {
         // Map the escape KeyStroke to the escape Action
         gameInterface.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
         gameInterface.getRootPane().getActionMap().put("ESCAPE", escapeAction);
-
+        
+        Round_initializer ri = new Round_initializer(gameInterface, sp);
+        
         //Creation of the refresh thread
         Refresh refresh = new Refresh(gameInterface);
         refresh.start();
-
-        //Creation of the time thread
-        Time t = new Time(gameInterface);
-        t.start();
-
-        //Creation of the lapins generator thread
-        Lapins_generator lg = new Lapins_generator();
-        lg.start();
-
+        
+        
         //Display the window
+        gameInterface.setSize(Constant_view.HEIGHT_WINDOW, Constant_view.WIDTH_WINDOW);
         gameInterface.setVisible(true);
     }
 }

@@ -11,9 +11,6 @@ public class Score_and_prices {
     public int money;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-    //Constant representing the score objective to win the game
-    public static final int SCORE_OBJECTIVE = 100;
-
     public Score_and_prices(GameInterface gm) {
         this.score = 0;
         this.money = 0;
@@ -39,7 +36,7 @@ public class Score_and_prices {
         gameInterface.updateScore(this.score);
 
         //If the score is greater than the score objective, the player wins
-        if(this.score >= SCORE_OBJECTIVE){
+        if(this.score >= Constant_modele.SCORE_OBJECTIVE){
             //Call the win method of the game interface
             gameInterface.win();
         }

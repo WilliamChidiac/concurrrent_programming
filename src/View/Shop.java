@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Modele.Plant_types;
 import Modele.Score_and_prices;
 
 public class Shop extends JFrame{
@@ -37,7 +38,7 @@ public class Shop extends JFrame{
         JButton plant1 = new JButton("Plant 1");
         plant1.addActionListener(e -> {
             if (sp.getMoney() >= 3){
-                this.addPlant(this.map, this.sp, 2, 3, 4, 10);
+                this.addPlant(Plant_types.PLANT_TYPE1);
                 sp.removeMoney(3);
             }
         });
@@ -53,14 +54,14 @@ public class Shop extends JFrame{
 
         JButton plant2 = new JButton("Finish Plant");
         plant2.addActionListener(e->{
-            this.addPlant(this.map, this.sp, 200, 3, 0, 0);
+            this.addPlant(Plant_types.PLANT_TYPE2);
         });
         buttonsShop.add(plant2);
 
         JButton plant3 = new JButton("Plant 2");
         plant3.addActionListener(e -> {
             if (sp.getMoney() >= 10){
-                this.addPlant(this.map, this.sp, 50, 40, 20, 50);
+                this.addPlant(Plant_types.PLANT_TYPE3);
                 sp.removeMoney(10);
             }
         });
@@ -76,7 +77,7 @@ public class Shop extends JFrame{
         this.add(buttonsShop);
         this.setSize(800, 600);
         this.pack();
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     /**
@@ -92,9 +93,9 @@ public class Shop extends JFrame{
      *            xp the experience of the plant, cost the cost of the plant,
      *            growth_time the time of growth of the plant
      */
-    public void addPlant(Main_panel map, Score_and_prices sp, int xp, int cost, int growth_time, int money_collected){
+    public void addPlant(Plant_types plant){
         Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
-        Plant_view pv = new Plant_view(xp, cost, growth_time, coordinate, sp, money_collected);
+        Plant_view pv = new Plant_view(plant.create_plant(coordinate), this.sp);
         map.add_plant(pv);
     }
 

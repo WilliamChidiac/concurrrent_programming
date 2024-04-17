@@ -12,9 +12,9 @@ import Modele.Score_and_prices;
 
 public class Plant_view extends JPanel{
     private int plant_id;
-    public Plant_view(int xp, int cost, int growthTime, Point pos, Score_and_prices sp, int money_collected) {
+    public Plant_view(Plant p, Score_and_prices sp) {
         super();
-        Plant p = new Plant(xp, cost, growthTime, pos, money_collected);
+        Point pos = p.getPosition();
         this.plant_id = p.getId();
         this.addMouseListener(new PlantClick(this, sp));
         this.setBounds(pos.x, pos.y, Constant_view.PLANT_BW, (Constant_view.PLANT_BH+Constant_view.PLANT_GAP+Constant_view.PLANT_RADIUS*2));
@@ -33,6 +33,7 @@ public class Plant_view extends JPanel{
         this.setLocation(pos.x - Constant_view.PLANT_RADIUS, 
                         pos.y - Constant_view.PLANT_RADIUS - Constant_view.PLANT_GAP - Constant_view.PLANT_BH);
         this.revalidate();
+        g.setColor(plant.getColor());
         g.fillOval(0,
         Constant_view.PLANT_RADIUS - Constant_view.PLANT_GAP,
         Constant_view.PLANT_RADIUS*2, 

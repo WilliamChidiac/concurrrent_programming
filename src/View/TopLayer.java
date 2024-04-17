@@ -1,6 +1,7 @@
 package View;
 
-import Modele.Score_and_prices;
+import Modele.Constant_modele;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,7 +42,7 @@ public class TopLayer extends JPanel{
         this.textPanel.add(time);
 
         //Create the JTextField with the score
-        JTextField score = new JTextField("Score : 0/" + Score_and_prices.SCORE_OBJECTIVE);
+        JTextField score = new JTextField("Score : 0/" + Constant_modele.SCORE_OBJECTIVE);
         score.setEditable(false);
         score.setHorizontalAlignment(JTextField.CENTER);
         score.setBackground(Color.LIGHT_GRAY);
@@ -74,7 +75,7 @@ public class TopLayer extends JPanel{
 
     //Method setScore that changes the text of the first JTextField with the new score
     public void updateScore(int score){
-        ((JTextField) this.textPanel.getComponent(1)).setText("Score : " + score+ "/" + Score_and_prices.SCORE_OBJECTIVE);
+        ((JTextField) this.textPanel.getComponent(1)).setText("Score : " + score+ "/" + Constant_modele.SCORE_OBJECTIVE);
     }
 
     //Method setMoney that changes the text of the second JTextField with the new money

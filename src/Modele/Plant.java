@@ -1,5 +1,6 @@
 package Modele;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,8 +18,9 @@ public class Plant {
     private int growthadvance;
     private boolean isGathered;
     private Point position;
+    private Color color;
 
-    public Plant(int xp, int cost, int growthTime, Point pos, int money_collected) {
+    public Plant(int xp, int cost, int growthTime, Point pos, int money_collected, Color color) {
         this.xp = xp;
         this.cost = cost;
         this.growthTime = growthTime;
@@ -26,6 +28,7 @@ public class Plant {
         this.growthadvance = 0;
         this.position = pos;
         this.money_collected = money_collected;
+        this.color = color;
         plants.put(id, this);
     }
     public static Plant getPlant(int id) {
@@ -69,6 +72,10 @@ public class Plant {
         return position;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public void grow() {
         if (growthadvance < growthTime) {
             growthadvance++;
@@ -88,15 +95,4 @@ public class Plant {
         Point m_and_xp = new Point(money_collected, xp);
         return m_and_xp;
     }
-
-    public static Plant createRandomPlant() {
-        int xp = (int) (Math.random() * 100);
-        int cost = (int) (Math.random() * 100);
-        int growthTime = (int) (Math.random() * 20);
-        Point position = new Point((int) (Math.random() * 500),
-                                    (int) (Math.random() * 500));
-        int money_collected = (int) (Math.random() * 100);
-        return new Plant(xp, cost, growthTime, position, money_collected);
-    }
-
 }
