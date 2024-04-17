@@ -44,6 +44,7 @@ public class PlantShop extends JPanel{
         buy = new JButton("Acheter");
         buy.addActionListener(e -> {
             if (sp.getMoney() > pt.cost){
+                sp.removeMoney(pt.cost);
                 Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
                 Plant_view pv = new Plant_view(pt.create_plant(coordinate),sp);
                 mp.add(pv);
