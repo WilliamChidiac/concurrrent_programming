@@ -38,9 +38,10 @@ public class Gardener_menu extends JPanel {
         buttonsPanel.setBackground(Color.lightGray);
 
         //Definitions and Add buttons to the buttonsPanel
-        JButton b1 = new JButton("Plant");
+        JButton b1 = new JButton("Shop");
         b1.addActionListener(e ->
         {
+            PlantShop.setEnabled(sp.getMoney());
             //If the shop is not visible, show it
             if(!this.shop.isVisible()) this.showShop();
             //If the shop is visible, hide it

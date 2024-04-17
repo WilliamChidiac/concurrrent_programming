@@ -1,11 +1,10 @@
 package View;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Point;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,91 +20,24 @@ public class Shop extends JFrame{
     private Score_and_prices sp;
 
     /**
-     * Constructor that creates the shop window with the plant buttons
-     * @param m the map of the game, sp the score and prices of the game
-     */
-    public Shop(Main_panel m, Score_and_prices sp){
-        super("Shop");
-        this.map = m;
-        this.sp = sp;
-
-        //Panel that contains the buttons without interaction
-        JPanel buttonsShop = new JPanel(new GridLayout(2,2));
-        buttonsShop.setBackground(Color.lightGray);
-        buttonsShop.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-        //Add buttons to the panel for the shop, each buttons plant a plant when clicked
-        JButton plant1 = new JButton("Plant 1");
-        plant1.addActionListener(e -> {
-            if (sp.getMoney() >= 3){
-                this.addPlant(Plant_types.PLANT_TYPE1);
-                sp.removeMoney(3);
-            }
-        });
-        //Add a listener to the score and prices to enable the button when the player has enough money
-        sp.addPropertyChangeListener(evt -> {
-            if ("money".equals(evt.getPropertyName())) {
-                plant1.setEnabled((int) evt.getNewValue() >= 3);
-            }
-        });
-        boolean condition = sp.getMoney() >= 3;
-        plant1.setEnabled(condition);
-        buttonsShop.add(plant1);
-
-        JButton plant2 = new JButton("Finish Plant");
-        plant2.addActionListener(e->{
-            this.addPlant(Plant_types.PLANT_TYPE2);
-        });
-        buttonsShop.add(plant2);
-
-        JButton plant3 = new JButton("Plant 2");
-        plant3.addActionListener(e -> {
-            if (sp.getMoney() >= 10){
-                this.addPlant(Plant_types.PLANT_TYPE3);
-                sp.removeMoney(10);
-            }
-        });
-        sp.addPropertyChangeListener(evt -> {
-            if ("money".equals(evt.getPropertyName())) {
-                plant3.setEnabled((int) evt.getNewValue() >= 10);
-            }
-        });
-        boolean condition3 = sp.getMoney() >= 10;
-        plant3.setEnabled(condition3);
-        buttonsShop.add(plant3);
-
-        this.add(buttonsShop);
-        this.setSize(800, 600);
-        this.pack();
-        this.setVisible(false);
-    }
-
-    /**
      * Default constructor
      */
-    public Shop() {
-        this(null, null);
-    }
+    public Shop(Main_panel mp, Score_and_prices sp) {
+        super("Shop");
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(500, 500);
 
-    /**
-     * Method that adds a plant to the map
-     * @param map the map of the game, sp the score and prices of the game,
-     *            xp the experience of the plant, cost the cost of the plant,
-     *            growth_time the time of growth of the plant
-     */
-    public void addPlant(Plant_types plant){
-        Point coordinate = (Point) Unite_controle_view.get_selected_unit().get_unite().get_current_location().clone();
-        Plant_view pv = new Plant_view(plant.create_plant(coordinate), this.sp);
-        map.add_plant(pv);
-    }
-
-    /**
-     * Main method to test the Shop_menu class
-     * @param args
-     */
-    public static void main(String[] args) {
-        //Test the visual of Shop_menu class
-        JFrame frame = new Shop();
-        frame.setVisible(true);
+        JPanel panel = new JPanel(new GridLayout(2, 2));
+        PlantShop plant1 = new PlantShop(Plant_types.PLANT_TYPE1, sp, mp);
+        PlantShop plant2 = new PlantShop(Plant_types.PLANT_TYPE2, sp, mp);
+        PlantShop plant3 = new PlantShop(Plant_types.PLANT_TYPE3, sp, mp);
+        PlantShop plant4 = new PlantShop(Plant_types.PLANT_TYPE4, sp, mp);
+        panel.add(plant1);
+        panel.add(plant2);        
+        panel.add(plant3);
+        panel.add(plant4);
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        this.add(panel);
+        this.pack();
     }
 }

@@ -51,6 +51,7 @@ public class Score_and_prices {
         this.money += money;
         gameInterface.updateMoney(this.money);
         this.pcs.firePropertyChange("money", oldMoney, this.money);
+        
     }
 
     public void removeMoney(int money) {

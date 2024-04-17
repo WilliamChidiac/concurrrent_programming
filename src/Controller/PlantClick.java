@@ -10,6 +10,7 @@ import Modele.Plant;
 import Modele.Score_and_prices;
 import View.GameInterface;
 import View.Main_panel;
+import View.PlantShop;
 import View.Plant_view;
 import View.Unite_controle_view;
 
@@ -34,6 +35,7 @@ public class PlantClick extends MouseAdapter {
             int xp = m_and_xp.y;
             score_and_prices.addScore(xp);
             score_and_prices.addMoney(money);
+            PlantShop.setEnabled(score_and_prices.getMoney());
             JPanel parent = (JPanel) this.plant_view.getParent();
             parent.remove(this.plant_view);
             parent.revalidate();
