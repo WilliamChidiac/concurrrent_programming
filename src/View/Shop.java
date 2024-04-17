@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -12,12 +11,6 @@ import Modele.Plant_types;
 import Modele.Score_and_prices;
 
 public class Shop extends JFrame{
-
-    //Attribute that contains the map of the game
-    private Main_panel map;
-
-    //Attribute that contains the score and prices of the game
-    private Score_and_prices sp;
 
     /**
      * Default constructor
