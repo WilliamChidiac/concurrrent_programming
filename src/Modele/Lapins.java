@@ -43,9 +43,11 @@ public class Lapins extends Thread {
         return this.is_alive;
     }
 
+    
     @Override 
     public void run(){
         try {
+            // The rabbit dies after a certain time
             Thread.sleep(Constant_modele.LAPIN_LIFETIME_SECONDS*1000);
             this.kill();
         } catch (InterruptedException e) {

@@ -19,10 +19,11 @@ public abstract class Deplacement extends Thread{
             return 1;
         return -1;
     }
-    
+    // Move the unit to the target point
     protected boolean deplace(Point current){ 
             int x_dir = direction(cible.x - current.x);
             int y_dir = direction(cible.y - current.y);
+            // While the unit is not at the target point
             while (true) {
                 boolean no_change = true;
                 try {
@@ -35,6 +36,7 @@ public abstract class Deplacement extends Thread{
                     no_change = false;
                     current.x += x_dir * Constant_modele.VITESSE_DEPLACEMENT_UNITE;
                     } 
+                    // If the unit is at the target point or the break condition is true
                     if (no_change || this.break_condition()) {
                         return no_change;
                     }              
@@ -44,6 +46,10 @@ public abstract class Deplacement extends Thread{
             }
     }
 
+    /**
+     * The condition to stop the movement
+     * @return true if the movement should stop
+     */
     protected abstract boolean break_condition();
 
     

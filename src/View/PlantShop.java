@@ -15,6 +15,9 @@ import javax.swing.JTextArea;
 import Modele.Plant_types;
 import Modele.Score_and_prices;
 
+/*
+ * This class is a JPanel that represents a shop for one specific type of plant 
+ */
 public class PlantShop extends JPanel{
     private static ArrayList<PlantShop> plantShopList = new ArrayList<PlantShop>();
     public static void setEnabled(int money){

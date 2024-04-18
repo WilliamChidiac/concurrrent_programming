@@ -22,19 +22,25 @@ public class Deplacement_lapin extends Deplacement{
         this.lapin = new Lapins(lapin_loc);
     }
 
-
+    /**
+     * Get the direction of the given point
+     * @param p the point to get the direction of
+     * @return the direction of the given point
+     */
     private void update_cible(){
         Collection<Unite_controle> jardinier = Unite_controle.get_all_unit();
         Collection<Plant> plantes = Plant.getAllPlants();
         Point cible_plant = new Point(10000000, 1000000000);
         Point cible_jard = new Point(10000000, 1000000000);
         Point lapin_pos = lapin.get_current_location();
+        // Find the closest gardener
         for (Unite_controle unite : jardinier) {
             Point unite_pos = unite.get_current_location();
             if (unite_pos.distance(lapin_pos) < cible_jard.distance(lapin_pos)) {
                 cible_jard = unite_pos;
             }
         }
+        // Find the closest plant
         for (Plant plant : plantes) {
             Point plant_pos = plant.getPosition();
             if (plant_pos.distance(lapin_pos) < cible_plant.distance(lapin_pos) && cible_jard.distance(plant_pos) > Constant_modele.DISTANCE_MINIMUM_GARDENER_PLANT){
@@ -42,16 +48,19 @@ public class Deplacement_lapin extends Deplacement{
                 closest_plant = plant;
             }
         }
+        // If there is no plant
         if (closest_plant == null) {
             cible = lapin.get_current_location();
+        // If the distance between the rabbit and the gardener is less than the distance between the rabbit and the plant
         }else if (cible_jard.distance(lapin_pos) < cible_plant.distance(lapin_pos)) {
             cible = new Point(lapin_pos.x - cible_plant.x, lapin_pos.y - cible_plant.y);
+        // If the distance between the rabbit and the gardener is greater than the distance between the rabbit and the plant
         }else{
             cible = cible_plant;
         }
 
     }
-
+    
     @Override
     protected boolean break_condition(){
         return closest_plant.isGathered();

@@ -49,6 +49,9 @@ public enum Plant_types {
         this.cons3 = c3;
     }
 
+    /*
+     * Create a plant of the given type at the given position
+     */
     public Plant create_plant(Point pos) {
         return new Plant(this.xp, this.cost, this.growthTime, pos, this.money_collected, this.color);
     }

@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 import Modele.Plant;
 import Modele.Score_and_prices;
-import Modele.Unite_controle;
 import View.GameInterface;
 import View.Main_panel;
 import View.PlantShop;
@@ -30,10 +29,11 @@ public class PlantClick extends MouseAdapter {
     // the plant, the plant will be gathered only if it is fully grown
     public void mouseClicked(MouseEvent e) {
         Plant plant = this.plant_view.getPlant();
-        
+        // If the plant is fully grown and the plant is collectable
         if (plant.getGrowthadvance() == plant.getGrowthTime() && isCollectable()) {
             Point u_pos = Unite_controle_view.get_selected_unit().get_unite().get_current_location();
             Point p_pos = plant.getPosition();
+            // If the distance between the plant and the unit is less than 50
             if (u_pos.distance(p_pos) < 50) {
                 Point m_and_xp = plant.gather();
                 int money = m_and_xp.x;

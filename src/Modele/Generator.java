@@ -11,7 +11,7 @@ public abstract class Generator<T> extends Thread {
 
     @Override
     public void run(){
-        System.out.println("chouuuuu");
+        // Generates the initial number of objects
         for (int i = 0; i < init_num; i++){
             try{
                 Thread.sleep(1000);
@@ -20,6 +20,7 @@ public abstract class Generator<T> extends Thread {
                 e.printStackTrace();
             }
         }
+        // Generates objects every time interval
         while (true){
             try {
                 Thread.sleep(time);

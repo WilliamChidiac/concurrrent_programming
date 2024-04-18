@@ -12,8 +12,8 @@ import Modele.Score_and_prices;
 
 public class Shop extends JFrame{
 
-    /**
-     * Default constructor
+    /*
+     * Create a shop with the 4 different types of plants
      */
     public Shop(Main_panel mp, Score_and_prices sp) {
         super("Shop");

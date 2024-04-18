@@ -32,9 +32,11 @@ public class Round_initializer extends Thread {
     
     @Override
     public void run(){
+        // Initializes the game and all the generators threads
         this.plant_generator.start();
         (new Growth()).start();
         this.lapins_generator.start();
+        // Starts the timer
         while(true){
             try{
                 Thread.sleep(1000);
@@ -47,6 +49,7 @@ public class Round_initializer extends Thread {
                 e.printStackTrace();
             }
         }
+        // decides if the player won or lost
         if (sp.getScore() >= Constant_modele.SCORE_OBJECTIVE){
             this.gameInterface.win();
         } else {

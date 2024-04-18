@@ -12,7 +12,8 @@ public class Plant_generator extends Generator<Plant> {
     }
 
     /*
-     * Generate a plant
+     * Generate a plant randomly on the window
+     * the more the plant is rare, the more it is unlikely to be generated
      */
     @Override
     public Plant generate(){
