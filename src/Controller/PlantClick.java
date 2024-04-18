@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import Modele.Plant;
 import Modele.Score_and_prices;
+import Modele.Unite_controle;
 import View.GameInterface;
 import View.Main_panel;
 import View.PlantShop;
@@ -29,25 +30,31 @@ public class PlantClick extends MouseAdapter {
     // the plant, the plant will be gathered only if it is fully grown
     public void mouseClicked(MouseEvent e) {
         Plant plant = this.plant_view.getPlant();
+        
         if (plant.getGrowthadvance() == plant.getGrowthTime() && isCollectable()) {
-            Point m_and_xp = plant.gather();
-            int money = m_and_xp.x;
-            int xp = m_and_xp.y;
-            score_and_prices.addScore(xp);
-            score_and_prices.addMoney(money);
-            PlantShop.setEnabled(score_and_prices.getMoney());
-            JPanel parent = (JPanel) this.plant_view.getParent();
-            parent.remove(this.plant_view);
-            parent.revalidate();
-            parent.repaint();
-            Plant.removePlant(plant.getId());
-        } else {
-            // Get the game interface from the parent of the plant_view
-            GameInterface game_interface = ((Main_panel) this.plant_view.getParent()).get_game_interface();
-
-            // Add the plant menu to the top layer
-            game_interface.addPlantMenu(plant);
+            Point u_pos = Unite_controle_view.get_selected_unit().get_unite().get_current_location();
+            Point p_pos = plant.getPosition();
+            if (u_pos.distance(p_pos) < 50) {
+                Point m_and_xp = plant.gather();
+                int money = m_and_xp.x;
+                int xp = m_and_xp.y;
+                score_and_prices.addScore(xp);
+                score_and_prices.addMoney(money);
+                PlantShop.setEnabled(score_and_prices.getMoney());
+                JPanel parent = (JPanel) this.plant_view.getParent();
+                parent.remove(this.plant_view);
+                parent.revalidate();
+                parent.repaint();
+                Plant.removePlant(plant.getId());
+                return;
+            }
         }
+        
+        // Get the game interface from the parent of the plant_view
+        GameInterface game_interface = ((Main_panel) this.plant_view.getParent()).get_game_interface();
+
+        // Add the plant menu to the top layer
+        game_interface.addPlantMenu(plant);
     }
 
     // Method which return true if plant_view parent attribute unit_selected is not
